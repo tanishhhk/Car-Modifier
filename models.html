@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Models</title>
+    <link rel="stylesheet" href="models.css">
+    <script defer src="models.js"></script>
+    <script src="common.js" defer></script>
+
+</head>
+<body>
+
+    <header>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="brands.html">Brands</a></li>
+                <li><a href="models.html" class="active">Models</a></li>
+                <li><a href="test-drive.html">Test Drive</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>Explore Our Car Models</h1>
+    <!-- Filter Options -->
+    <div class="filters">
+        <label for="category">Filter by Category:</label>
+        <select id="category">
+            <option value="all">All</option>
+            <option value="sedan">Sedan</option>
+            <option value="suv">SUV</option>
+            <option value="luxury">Luxury</option>
+            <option value="sports">Sports</option>
+        </select>
+    </div>
+
+    <!-- Car Models Grid -->
+    <section class="model-grid">
+        <!-- 20 Model Cards -->
+        <script>
+            const models = [
+                { category: "sedan", name: "Honda City", img: "your-image.jpg" },
+                { category: "suv", name: "Mahindra XUV 500", img: "your-image.jpg" },
+                { category: "luxury", name: "Mercedes BenZ", img: "your-image.jpg" },
+                { category: "sports", name: "Ferrari", img: "your-image.jpg" },
+                { category: "sedan", name: "Hyundai Verna", img: "your-image.jpg" },
+                { category: "suv", name: "Maruti Ertiga", img: "your-image.jpg" },
+                { category: "luxury", name: "Audi Q6", img: "your-image.jpg" },
+                { category: "sports", name: "Supra", img: "your-image.jpg" },
+                { category: "sedan", name: "Honda Amaze", img: "your-image.jpg" },
+                { category: "suv", name: "Toyota Innova", img: "your-image.jpg" },
+                { category: "luxury", name: "Rolls Royce", img: "your-image.jpg" },
+                { category: "sports", name: "NitroX", img: "your-image.jpg" },
+                { category: "sedan", name: "Volkswagen Virtus", img: "your-image.jpg" },
+                { category: "suv", name: "Hyundai Alcazar", img: "your-image.jpg" },
+                { category: "luxury", name: "Prestige Drive", img: "your-image.jpg" },
+                { category: "sports", name: "Turbo Titan", img: "your-image.jpg" },
+                { category: "sedan", name: "Maruti Ciaz", img: "your-image.jpg" },
+                { category: "suv", name: "Tata Harrier", img: "your-image.jpg" },
+                { category: "luxury", name: "Opulent Voyager", img: "your-image.jpg" },
+                { category: "sedan", name: "Volkswagen Virtus", img: "your-image.jpg" }
+            ];
+
+            document.querySelector(".model-grid").innerHTML = models.map(model => `
+                <div class="model-card" data-category="${model.category}">
+                    <img src="${model.img}" alt="${model.name}">
+                    <h3>${model.name}</h3>
+                    <button class="view-details">View Details</button>
+                </div>
+            `).join("");
+        </script>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Car Configurator 3D. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

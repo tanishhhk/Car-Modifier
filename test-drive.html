@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Test Drive</title>
+    <link rel="stylesheet" href="test-drive.css">
+    <script defer src="test-drive.js"></script>
+    <script src="common.js" defer></script>
+
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="brands.html">Brands</a></li>
+                <li><a href="models.html">Models</a></li>
+                <li><a href="test-drive.html" class="active">Test Drive</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Book a Visit</h1>
+        <form id="testDriveForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            <span class="error-message" id="nameError"></span>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <span class="error-message" id="emailError"></span>
+
+            <label for="phone">Phone Number:</label>
+<div class="phone-container">
+    <select id="countryCode" name="countryCode">
+        <option value="+1">🇺🇸 +1 (USA)</option>
+        <option value="+91" selected>🇮🇳 +91 (India)</option>
+        <option value="+44">🇬🇧 +44 (UK)</option>
+        <option value="+61">🇦🇺 +61 (Australia)</option>
+        <option value="+81">🇯🇵 +81 (Japan)</option>
+        <option value="+49">🇩🇪 +49 (Germany)</option>
+        <option value="+33">🇫🇷 +33 (France)</option>
+    </select>
+    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+</div>
+<span class="error-message" id="phoneError"></span>
+
+
+            <label for="model">Select Car Model:</label>
+            <select id="model" name="model" required>
+                <option value="">Choose a model...</option>
+                <option value="XUV 700">XUV 700</option>
+                <option value="Kia Seltos">Kia Seltos</option>
+                <option value="Honda City">Honda City</option>
+                <option value="Swift Dzire">Swift Dzire</option>
+            </select>
+
+            <label for="date">Preferred Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="time">Preferred Time:</label>
+            <select id="time" name="time" required>
+                <option value="">Choose a time slot...</option>
+                <option value="10:00 AM">10:00 AM</option>
+                <option value="12:00 PM">12:00 PM</option>
+                <option value="2:00 PM">2:00 PM</option>
+                <option value="4:00 PM">4:00 PM</option>
+            </select>
+
+            <label for="location">Nearest Dealer Location:</label>
+            <select id="location" name="location" required>
+                <option value="">Select location...</option>
+                <option value="Delhi">New Delhi</option>
+                <option value="Noida">Noida</option>
+                <option value="Ghaziabad">Ghaziabad</option>
+                <option value="Gurgaon">Gurugram</option>
+            </select>
+
+            <button type="submit">Book Now</button>
+        </form>
+
+        <div id="confirmationMessage" class="hidden">
+            <h2>Test Drive Confirmed! 🚗</h2>
+            <p>We will contact you soon with further details.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Car Configurator 3D. All rights reserved.</p>
+    </footer>
+</body>
+</html>

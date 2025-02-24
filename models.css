@@ -1,0 +1,125 @@
+@import url('styles.css'); /* Import common styles */
+
+/* Global Styles */
+html, body {
+    height: 100%; /* ✅ Full viewport height */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+}
+
+
+h1{
+    text-align: center;
+}
+
+/* Header */
+header {
+    background-color: #222;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Navbar */
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 8px 12px;
+}
+
+nav ul li a.active {
+    background-color: yellow;
+    color: black;
+    border-radius: 5px;
+}
+
+
+/* Main Content */
+main {
+    flex: 1;  /* ✅ Pushes footer down */
+    padding: 20px;
+}
+
+/* Model Grid */
+.filters {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.filters select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.model-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.model-card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.model-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.model-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.model-card h3 {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+button.view-details {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+button.view-details:hover {
+    background-color: #0056b3;
+}
+
+/* Footer */
+footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: auto; /* ✅ Ensures footer sticks at the bottom */
+    width: 100%;
+    box-sizing: border-box;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Car Configurator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <script src="common.js" defer></script>
+</head>
+<body>
+
+    <!-- Login/Signup Popup -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2>Welcome to Car Configurator</h2>
+            <p>Login or Signup to save your customizations!</p>
+            <button onclick="window.location.href='signup.html'">Sign Up</button>
+            <button onclick="window.location.href='login.html'">Login</button>
+            <button class="skip-btn" onclick="closePopup()">Skip for Now</button>
+        </div>
+    </div>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="brands.html">Brands</a></li>
+                <li><a href="models.html">Models</a></li>
+                <li><a href="test-drive.html">Test Drive</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li id="auth-buttons">
+                    <a href="login.html" id="login-link">Login</a>
+                    <button id="logout-btn" style="display: none;" onclick="logoutUser()">Logout</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Customize. Compare. Experience.</h2>
+        <button onclick="window.location.href='models.html'">Start Configuring</button>
+        <button onclick="window.location.href='brands.html'">Explore Brands</button>
+        <button onclick="window.location.href='test-drive.html'">Book a Test Drive</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Car Configurator 3D. All rights reserved.</p>
+    </footer>
+
+    <script>
+        window.onload = function () {
+            if (localStorage.getItem("isLoggedIn") === "true") {
+                document.getElementById("popup").style.display = "none"; // Hide login/signup popup
+                document.getElementById("login-link").style.display = "none"; // Hide login button
+                document.getElementById("logout-btn").style.display = "inline"; // Show logout button
+            }
+        };
+
+        function logoutUser() {
+            localStorage.removeItem("isLoggedIn");
+            window.location.reload(); // Refresh to apply changes
+        }
+
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
