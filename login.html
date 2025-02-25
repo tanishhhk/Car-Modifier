@@ -19,9 +19,9 @@
 
             <button type="submit">Login</button>
         </form>
-
+        <br>
         <p>Or login with OTP <button id="otp-login">Get OTP</button></p>
-
+        
         <div id="otp-section" style="display: none;">
             <label for="otp-input">Enter OTP</label>
             <input type="text" id="otp-input">
@@ -31,17 +31,7 @@
         <p>Don't have an account? <a href="signup.html">Signup</a></p>
     </div>
 
-    <script>
-        document.getElementById("login-form").onsubmit = function (event) {
-            event.preventDefault(); // Prevent form from submitting normally
-
-            // Simulating successful login
-            localStorage.setItem("isLoggedIn", "true");
-
-            // Redirect to homepage
-            window.location.href = "index.html";
-        };
-    </script>
+    <script src="auth.js"></script>
 
 </body>
 </html>

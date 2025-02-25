@@ -1,3 +1,8 @@
+// Helper function to validate email
+function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 // Signup Form Handling
 document.addEventListener("DOMContentLoaded", () => {
     const signupForm = document.getElementById("signup-form");
@@ -80,8 +85,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-
-// Helper function to validate email
-function validateEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
