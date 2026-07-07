@@ -3,10 +3,10 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Sparkles, Calendar, BarChart2, Palette, Star, Shield, Zap } from 'lucide-react';
+import { ArrowRight, Sparkles, Calendar, Eye, Palette, Star, Shield, Zap, Wrench } from 'lucide-react';
 import { cars } from '@/lib/cars';
 
-const TYPING_TEXTS = ['Customize.', 'Compare.', 'Experience.', 'Configure.'];
+const TYPING_TEXTS = ['Customize in 3D.', 'Configure CAD.', 'Design Interiors.', 'Schedule Garage.'];
 
 function TypingHero() {
   const [textIndex, setTextIndex] = useState(0);
@@ -33,35 +33,6 @@ function TypingHero() {
   return <span style={{ color: 'var(--accent-blue)' }}>{displayed}<span style={{ borderRight: '3px solid var(--accent-blue)', marginLeft: '2px', animation: 'blink 1s step-end infinite' }} /></span>;
 }
 
-function StatCounter({ end, label, suffix = '' }: { end: number; label: string; suffix?: string }) {
-  const [count, setCount] = useState(0);
-  const [started, setStarted] = useState(false);
-
-  useEffect(() => {
-    if (!started) return;
-    if (count >= end) return;
-    const step = Math.ceil(end / 60);
-    const timer = setTimeout(() => setCount(c => Math.min(c + step, end)), 25);
-    return () => clearTimeout(timer);
-  }, [count, end, started]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) setStarted(true); }, { threshold: 0.4 });
-    const el = document.getElementById(`stat-${label}`);
-    if (el) observer.observe(el);
-    return () => observer.disconnect();
-  }, [label]);
-
-  return (
-    <div id={`stat-${label}`} style={{ textAlign: 'center' }}>
-      <p style={{ fontWeight: 900, fontSize: 'clamp(32px,5vw,52px)', margin: '0 0 6px', background: 'linear-gradient(135deg,#3b82f6,#8b5cf6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-        {count}{suffix}
-      </p>
-      <p style={{ color: 'var(--text-muted)', fontSize: '14px', fontWeight: 500, margin: 0, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{label}</p>
-    </div>
-  );
-}
-
 const featuredIds = ['ferrari-sf90', 'rolls-royce', 'toyota-supra', 'audi-q7'];
 
 export default function HomePage() {
@@ -69,7 +40,7 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* ─── Hero ─────────────────────────────────────────────────────────── */}
+      {/* Hero */}
       <section className="hero-gradient" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '80px 24px 60px', position: 'relative', overflow: 'hidden' }}>
         {/* Background orbs */}
         <div style={{ position: 'absolute', top: '15%', left: '10%', width: '400px', height: '400px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%)', pointerEvents: 'none' }} />
@@ -77,7 +48,7 @@ export default function HomePage() {
 
         <div className="fade-in-up" style={{ animationDelay: '0.1s', opacity: 0 }}>
           <span className="badge badge-blue" style={{ marginBottom: '20px', display: 'inline-block', fontSize: '12px' }}>
-            ✨ 16+ Premium Models Available
+            ✨ Interactive 3D CAD Visualization
           </span>
         </div>
 
@@ -86,19 +57,19 @@ export default function HomePage() {
           <TypingHero />
         </h1>
 
-        <p className="fade-in-up" style={{ animationDelay: '0.4s', opacity: 0, color: 'var(--text-muted)', fontSize: 'clamp(16px,2vw,20px)', maxWidth: '600px', lineHeight: 1.7, margin: '0 auto 40px' }}>
-          Explore 16+ premium models, customize colors, compare specs side-by-side, and book your test drive — all in one seamless experience.
+        <p className="fade-in-up" style={{ animationDelay: '0.4s', opacity: 0, color: 'var(--text-muted)', fontSize: 'clamp(16px,2vw,20px)', maxWidth: '720px', lineHeight: 1.7, margin: '0 auto 40px' }}>
+          Explore premium models, load high fidelity 3D CAD schematics, apply real world customizations, and schedule a garage consultation at your convenience.
         </p>
 
         <div className="fade-in-up" style={{ animationDelay: '0.55s', opacity: 0, display: 'flex', gap: '14px', flexWrap: 'wrap', justifyContent: 'center' }}>
           <Link href="/models" className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', fontSize: '16px', padding: '14px 32px', position: 'relative', zIndex: 1 }}>
-            Start Configuring <ArrowRight size={18} />
+            Start Customizing <ArrowRight size={18} />
           </Link>
           <Link href="/brands" className="btn-ghost" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', fontSize: '16px', padding: '14px 32px' }}>
             Explore Brands
           </Link>
           <Link href="/test-drive" className="btn-ghost" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', fontSize: '16px', padding: '14px 32px' }}>
-            <Calendar size={17} /> Book Test Drive
+            <Calendar size={17} /> Garage Appointment
           </Link>
         </div>
 
@@ -109,23 +80,32 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── Stats ────────────────────────────────────────────────────────── */}
-      <section style={{ padding: '60px 24px', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', background: 'rgba(255,255,255,0.02)' }}>
-        <div style={{ maxWidth: '1000px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(150px,1fr))', gap: '40px' }}>
-          <StatCounter end={16} suffix="+" label="Car Models" />
-          <StatCounter end={10} suffix="+" label="Brands" />
-          <StatCounter end={4} label="Categories" />
-          <StatCounter end={100} suffix="%" label="Free to Use" />
+      {/* Feature Steps */}
+      <section style={{ padding: '60px 24px', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', background: 'var(--bg-glass-light)' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(250px,1fr))', gap: '40px' }}>
+          {[
+            { step: '01', title: 'Load CAD Model', desc: 'Choose a car, select its model variant, and load its detailed 3D CAD schematic.' },
+            { step: '02', title: 'Apply Customizations', desc: 'Modify body paint, alloy wheels, boot subwoofers, and seat trims live in 3D.' },
+            { step: '03', title: 'Garage Consult', desc: 'Schedule a session with experts. They can visit your home, or you can visit their shop.' }
+          ].map(f => (
+            <div key={f.step} style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+              <span style={{ fontSize: '32px', fontWeight: 900, background: 'linear-gradient(135deg,#3b82f6,#8b5cf6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{f.step}</span>
+              <div>
+                <h3 style={{ margin: '0 0 6px', fontWeight: 800, fontSize: '16px', color: 'var(--text-primary)' }}>{f.title}</h3>
+                <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '13px', lineHeight: '1.6' }}>{f.desc}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* ─── Featured Cars ────────────────────────────────────────────────── */}
+      {/* Featured Cars */}
       <section style={{ padding: '100px 24px' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '52px' }}>
-            <span className="badge badge-violet" style={{ marginBottom: '16px', display: 'inline-block' }}>⭐ FEATURED</span>
-            <h2 className="section-title">Handpicked Excellence</h2>
-            <p className="section-subtitle">From everyday performance to supercar greatness</p>
+            <span className="badge badge-violet" style={{ marginBottom: '16px', display: 'inline-block' }}>⭐ FEATURED MODELS</span>
+            <h2 className="section-title">Select Model to Customize</h2>
+            <p className="section-subtitle">Click any model below to open its dedicated 3D CAD customizer panel</p>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: '24px' }}>
@@ -151,28 +131,28 @@ export default function HomePage() {
 
           <div style={{ textAlign: 'center', marginTop: '40px' }}>
             <Link href="/models" className="btn-ghost" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-              View All 16 Models <ArrowRight size={16} />
+              View All Models <ArrowRight size={16} />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* ─── Why Us ───────────────────────────────────────────────────────── */}
-      <section style={{ padding: '100px 24px', background: 'rgba(255,255,255,0.01)', borderTop: '1px solid var(--border)' }}>
+      {/* Why Us */}
+      <section style={{ padding: '100px 24px', background: 'var(--bg-glass-light)', borderTop: '1px solid var(--border)' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-            <span className="badge badge-blue" style={{ marginBottom: '16px', display: 'inline-block' }}>WHY CARCONFIG</span>
+            <span className="badge badge-blue" style={{ marginBottom: '16px', display: 'inline-block' }}>CAPABILITIES</span>
             <h2 className="section-title">Built for Car Enthusiasts</h2>
-            <p className="section-subtitle">Everything you need to find your dream car</p>
+            <p className="section-subtitle">A state of the art interactive customization suite</p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: '24px' }}>
             {[
-              { icon: Palette, title: 'Visual Configurator', desc: 'Choose from multiple colors for each model and see the tint applied live — no guesswork.', color: '#3b82f6' },
-              { icon: BarChart2, title: 'Side-by-Side Compare', desc: 'Select up to 2 cars and compare their engine, mileage, price, and power in one view.', color: '#8b5cf6' },
-              { icon: Star, title: 'Save Favorites', desc: 'Shortlist cars you love with the favorites button. Your list persists across sessions.', color: '#f43f5e' },
-              { icon: Calendar, title: 'Instant Test Drive', desc: 'Book a test drive in minutes — pick your slot, location, and get confirmed instantly.', color: '#10b981' },
-              { icon: Shield, title: 'Real Specifications', desc: 'Every stat — engine, mileage, horsepower, seats — is sourced from manufacturer data.', color: '#f59e0b' },
-              { icon: Zap, title: 'Lightning Fast', desc: 'Built with Next.js 14 and React 19. Zero lag, instant navigation, premium experience.', color: '#06b6d4' },
+              { icon: Palette, title: 'Paint & Finishes', desc: 'Modify body paint with gloss, matte, or chrome metallic swatches, or input a custom hex value.', color: '#3b82f6' },
+              { icon: Wrench, title: 'Alloy Spokes', desc: 'Select and preview custom alloys like Chrome Spoke, Matte Black Star, Gold Mesh, or Sport Red Line.', color: '#8b5cf6' },
+              { icon: Star, title: '3D CAD Blueprints', desc: 'Switch between Exterior and 360 degree Interior look around views, or toggle the glowing wireframe schematic.', color: '#f43f5e' },
+              { icon: Calendar, title: 'Garage Consultations', desc: 'Schedule verified shops to perform customizations. Technicians visit your home or you visit them.', color: '#10b981' },
+              { icon: Shield, title: 'Subwoofer Sound systems', desc: 'Fit subwoofers into the trunk and watch the speakers pulsate in sync with mock soundwave frequencies.', color: '#f59e0b' },
+              { icon: Zap, title: 'Save Favorites', desc: 'Shortlist configurations that you love. Your selections persist across browser sessions.', color: '#06b6d4' },
             ].map(({ icon: Icon, title, desc, color }) => (
               <div key={title} className="card-hover" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '18px', padding: '28px' }}>
                 <div style={{ width: 48, height: 48, borderRadius: '12px', background: `${color}22`, border: `1px solid ${color}44`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
@@ -186,24 +166,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── CTA Banner ───────────────────────────────────────────────────── */}
+      {/* CTA Banner */}
       <section style={{ padding: '100px 24px' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
           <div className="gradient-border" style={{ borderRadius: '24px', padding: '60px 40px', background: 'var(--bg-card)', position: 'relative', overflow: 'hidden' }}>
             <div style={{ position: 'absolute', top: '-40px', right: '-40px', width: '200px', height: '200px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%)', pointerEvents: 'none' }} />
             <Sparkles size={36} style={{ color: '#8b5cf6', marginBottom: '16px' }} />
             <h2 style={{ fontSize: 'clamp(26px,4vw,42px)', fontWeight: 900, margin: '0 0 16px', color: 'var(--text-primary)' }}>
-              Ready to Find Your Perfect Car?
+              Ready to Customize in 3D?
             </h2>
-            <p style={{ color: 'var(--text-muted)', fontSize: '17px', lineHeight: '1.7', marginBottom: '36px', maxWidth: '540px', margin: '0 auto 36px' }}>
-              Browse 16 models across 4 categories. Customize, compare, and book — it takes less than 2 minutes.
+            <p style={{ color: 'var(--text-muted)', fontSize: '17px', lineHeight: '1.7', marginBottom: '36px', maxWidth: '600px', margin: '0 auto 36px' }}>
+              Choose from our catalog, load its 3D CAD blueprint, configure it to your liking, and schedule your garage consultation.
             </p>
             <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link href="/models" className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', fontSize: '16px', padding: '14px 32px', position: 'relative', zIndex: 1 }}>
                 Browse Models <ArrowRight size={17} />
               </Link>
               <Link href="/test-drive" className="btn-ghost" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', fontSize: '16px', padding: '14px 32px' }}>
-                <Calendar size={17} /> Book Test Drive
+                <Calendar size={17} /> Garage Appointment
               </Link>
             </div>
           </div>

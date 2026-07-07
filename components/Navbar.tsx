@@ -3,13 +3,13 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { Car, Menu, X, LogOut, LogIn } from 'lucide-react';
+import { Car, Menu, X, LogOut, LogIn, Sun, Moon } from 'lucide-react';
 
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/brands', label: 'Brands' },
   { href: '/models', label: 'Models' },
-  { href: '/test-drive', label: 'Test Drive' },
+  { href: '/test-drive', label: 'Garage Appointment' },
   { href: '/about', label: 'About' },
   { href: '/faq', label: 'FAQ' },
 ];
@@ -19,13 +19,35 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem('isLoggedIn') === 'true');
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll);
+
+    // Initial theme set
+    const saved = localStorage.getItem('theme') || 'light';
+    setTheme(saved as 'light' | 'dark');
+    if (saved === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn');
@@ -94,6 +116,27 @@ export default function Navbar() {
 
         {/* Auth button */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            style={{
+              background: 'none',
+              border: 'none',
+              color: 'white',
+              cursor: 'pointer',
+              padding: '6px',
+              borderRadius: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'background 0.2s',
+            }}
+            onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
+            onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+          >
+            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+          </button>
+
           {isLoggedIn ? (
             <button onClick={handleLogout} className="btn-ghost" style={{ padding: '8px 16px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '6px' }}>
               <LogOut size={15} /> Logout

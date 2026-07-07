@@ -4,12 +4,12 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: { default: 'CarConfig — Customize. Compare. Experience.', template: '%s | CarConfig' },
-  description: 'Explore and customize 16+ premium car models. Compare specs, choose colors, and book test drives — all in one place.',
-  keywords: ['car configurator', 'car customization', 'test drive', 'car comparison', 'luxury cars', 'Indian cars'],
+  title: { default: 'CarConfig | 3D Car Customizer & Garages', template: '%s | CarConfig' },
+  description: 'Load high fidelity 3D CAD schematics, apply real world upgrades, and schedule garage consultations.',
+  keywords: ['car configurator', 'car customization', '3d cad model', 'garage appointment', 'car upgrades', 'alloys', 'paint', 'subwoofer'],
   openGraph: {
-    title: 'CarConfig — The Ultimate Car Configurator',
-    description: 'Explore 16+ models, customize colors, compare specs and book test drives.',
+    title: 'CarConfig | 3D Car Customizer & Garages',
+    description: 'Load high fidelity 3D CAD schematics, apply real world upgrades, and schedule garage consultations.',
     type: 'website',
   },
 };

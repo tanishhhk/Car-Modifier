@@ -25,7 +25,7 @@ export default function Footer() {
               </span>
             </div>
             <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '14px', lineHeight: '1.7', maxWidth: '240px' }}>
-              Explore, customize, and book test drives for 16+ premium car models — all in one place.
+              Explore, customize in 3D CAD, and schedule garage appointments, all in one place.
             </p>
             <div style={{ display: 'flex', gap: '12px', marginTop: '20px' }}>
               {[Code2, MessageCircle, Share2].map((Icon, i) => (
@@ -48,7 +48,7 @@ export default function Footer() {
           <div>
             <h4 style={{ color: 'white', fontWeight: 700, marginBottom: '16px', fontSize: '14px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Navigation</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              {[['/', 'Home'],['brands','Brands'],['models','Models'],['test-drive','Test Drive'],['about','About'],['faq','FAQ']].map(([href, label]) => (
+              {[['/', 'Home'],['brands','Brands'],['models','Models'],['test-drive','Garage Appointment'],['about','About'],['faq','FAQ']].map(([href, label]) => (
                 <li key={href}>
                   <Link href={`/${href === '/' ? '' : href}`} style={{ color: 'rgba(255,255,255,0.45)', textDecoration: 'none', fontSize: '14px', transition: 'color 0.2s' }}
                     onMouseEnter={e => (e.currentTarget as HTMLElement).style.color='#3b82f6'}

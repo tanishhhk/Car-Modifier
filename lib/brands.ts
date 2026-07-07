@@ -92,7 +92,7 @@ export const brands: Brand[] = [
   },
   {
     id: 'rolls-royce',
-    name: 'Rolls-Royce',
+    name: 'Rolls Royce',
     country: '🇬🇧 UK',
     segment: 'luxury',
     modelCount: 1,

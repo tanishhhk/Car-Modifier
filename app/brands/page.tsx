@@ -33,7 +33,7 @@ export default function BrandsPage() {
       <div style={{ textAlign: 'center', marginBottom: '60px' }}>
         <span className="badge badge-blue" style={{ marginBottom: '16px', display: 'inline-block' }}>OUR PARTNERS</span>
         <h1 className="section-title">Explore Car Brands</h1>
-        <p className="section-subtitle">From budget-friendly favourites to legendary supercars</p>
+        <p className="section-subtitle">From budget friendly favourites to legendary supercars</p>
       </div>
 
       {/* Filters */}
