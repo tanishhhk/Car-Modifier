@@ -50,6 +50,7 @@ body {
   padding: 0;
   overflow-x: hidden;
   min-height: 100vh;
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ─── Scrollbar ──────────────────────────────────────────────── */
@@ -201,7 +202,8 @@ input:focus, select:focus, textarea:focus {
 
 /* ─── Buttons ────────────────────────────────────────────────── */
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent-blue), var(--accent-violet));
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-violet), var(--accent-blue));
+  background-size: 200% auto;
   color: white;
   border: none;
   padding: 12px 28px;
@@ -213,16 +215,11 @@ input:focus, select:focus, textarea:focus {
   position: relative;
   overflow: hidden;
 }
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, var(--accent-violet), var(--accent-blue));
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.btn-primary:hover { 
+  background-position: right center;
+  transform: translateY(-2px); 
+  box-shadow: 0 10px 30px var(--glow-blue); 
 }
-.btn-primary:hover::before { opacity: 1; }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px var(--glow-blue); }
 
 .btn-ghost {
   background: transparent;

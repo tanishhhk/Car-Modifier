@@ -171,6 +171,7 @@ function ModelsContent() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <div style={{ flex: 1, minHeight: '480px', position: 'relative' }}>
               <Car3DViewer
+                carId={selectedCar.id}
                 carCategory={selectedCar.category}
                 carName={selectedCar.name}
                 variantName={selectedVariant}

@@ -72,12 +72,6 @@ export default function HomePage() {
             <Calendar size={17} /> Garage Appointment
           </Link>
         </div>
-
-        {/* Scroll indicator */}
-        <div className="fade-in-up" style={{ animationDelay: '1s', opacity: 0, marginTop: '60px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', fontSize: '12px' }}>
-          <span style={{ textTransform: 'uppercase', letterSpacing: '0.1em' }}>Scroll to explore</span>
-          <div style={{ width: 1, height: 40, background: 'linear-gradient(to bottom, var(--text-muted), transparent)' }} />
-        </div>
       </section>
 
       {/* Feature Steps */}

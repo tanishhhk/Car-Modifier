@@ -2,9 +2,11 @@
 
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { Play, Pause, RefreshCw, ZoomIn, ZoomOut, ToggleLeft, ToggleRight } from 'lucide-react';
 
 interface Car3DViewerProps {
+  carId: string;
   carCategory: 'sedan' | 'suv' | 'luxury' | 'sports';
   carName: string;
   variantName: string;
@@ -18,6 +20,7 @@ interface Car3DViewerProps {
 }
 
 export default function Car3DViewer({
+  carId,
   carCategory,
   carName,
   variantName,
@@ -280,7 +283,8 @@ export default function Car3DViewer({
     wheelsRef.current = [];
     woofersRef.current = [];
 
-    // Colors & Materials
+    const buildProceduralCar = () => {
+      // Colors & Materials
     const chassisColor = new THREE.Color(paintColor);
     const seatColor = new THREE.Color(interiorColor);
     const tireColor = new THREE.Color(0x151518);
@@ -583,9 +587,52 @@ export default function Car3DViewer({
           cone.add(crown);
         }
       });
-    }
+    } // close if
+    }; // close buildProceduralCar
 
-  }, [carCategory, paintColor, alloyStyle, wooferStyle, interiorColor, cadMode, trunkOpen, viewMode]);
+    const loader = new GLTFLoader();
+    loader.load(
+      `/models/${carId}.glb`,
+      (gltf) => {
+        const model = gltf.scene;
+        
+        // Traverse and apply materials
+        model.traverse((child) => {
+          if ((child as THREE.Mesh).isMesh) {
+            const mesh = child as THREE.Mesh;
+            const matName = mesh.material ? (mesh.material as THREE.Material).name.toLowerCase() : '';
+            
+            // Map our React state to the GLTF materials
+            if (matName.includes('paint') || matName.includes('body')) {
+              (mesh.material as THREE.MeshStandardMaterial).color = new THREE.Color(paintColor);
+            } else if (matName.includes('alloy') || matName.includes('wheel') || matName.includes('rim')) {
+              let aColor = new THREE.Color(0xd1d5db); // chrome
+              if (alloyStyle === 'star') aColor = new THREE.Color(0x111111);
+              else if (alloyStyle === 'mesh') aColor = new THREE.Color(0xd4af37);
+              (mesh.material as THREE.MeshStandardMaterial).color = aColor;
+            } else if (matName.includes('interior') || matName.includes('seat')) {
+              (mesh.material as THREE.MeshStandardMaterial).color = new THREE.Color(interiorColor);
+            }
+
+            if (cadMode && mesh.material) {
+              (mesh.material as THREE.MeshStandardMaterial).wireframe = true;
+              (mesh.material as THREE.MeshStandardMaterial).emissive = new THREE.Color(0x10b981);
+              (mesh.material as THREE.MeshStandardMaterial).emissiveIntensity = 0.3;
+            }
+          }
+        });
+
+        // Add to group
+        carGroup.add(model);
+      },
+      undefined,
+      (error) => {
+        console.warn(`Could not load /models/${carId}.glb, falling back to procedural model.`);
+        buildProceduralCar();
+      }
+    );
+
+  }, [carId, carCategory, paintColor, alloyStyle, wooferStyle, interiorColor, cadMode, trunkOpen, viewMode]);
 
   return (
     <div
