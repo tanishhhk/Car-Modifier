@@ -46,11 +46,6 @@ export default function HomePage() {
         <div style={{ position: 'absolute', top: '15%', left: '10%', width: '400px', height: '400px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%)', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', bottom: '20%', right: '10%', width: '350px', height: '350px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
-        <div className="fade-in-up" style={{ animationDelay: '0.1s', opacity: 0 }}>
-          <span className="badge badge-blue" style={{ marginBottom: '20px', display: 'inline-block', fontSize: '12px' }}>
-            ✨ Interactive 3D CAD Visualization
-          </span>
-        </div>
 
         <h1 className="fade-in-up" style={{ animationDelay: '0.2s', opacity: 0, fontSize: 'clamp(36px,6vw,80px)', fontWeight: 900, lineHeight: 1.1, margin: '0 0 12px', maxWidth: '900px', letterSpacing: '-2px' }}>
           The Future of Car<br />

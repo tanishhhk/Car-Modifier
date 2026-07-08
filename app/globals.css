@@ -202,23 +202,25 @@ input:focus, select:focus, textarea:focus {
 
 /* ─── Buttons ────────────────────────────────────────────────── */
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent-blue), var(--accent-violet), var(--accent-blue));
-  background-size: 200% auto;
+  background: linear-gradient(45deg, #dc2626, #2563eb, #e2e8f0, #dc2626);
+  background-size: 300% 300%;
   color: white;
   border: none;
   padding: 12px 28px;
-  border-radius: 10px;
-  font-weight: 600;
+  border-radius: 12px;
+  font-weight: 700;
   font-size: 15px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3), 0 4px 15px rgba(37, 99, 235, 0.3);
+  text-shadow: 0px 1px 2px rgba(0,0,0,0.2);
 }
 .btn-primary:hover { 
-  background-position: right center;
-  transform: translateY(-2px); 
-  box-shadow: 0 10px 30px var(--glow-blue); 
+  background-position: 100% 50%;
+  transform: translateY(-3px) scale(1.02); 
+  box-shadow: 0 12px 25px rgba(220, 38, 38, 0.4), 0 12px 25px rgba(37, 99, 235, 0.4); 
 }
 
 .btn-ghost {

@@ -66,11 +66,11 @@ export default function Navbar() {
         zIndex: 900,
         transition: 'all 0.3s ease',
         background: scrolled
-          ? 'rgba(10,10,15,0.95)'
-          : 'rgba(10,10,15,0.6)',
+          ? 'var(--bg-glass)'
+          : 'transparent',
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
-        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.08)' : '1px solid transparent',
+        borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
       }}
     >
       <nav style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '68px' }}>
@@ -83,7 +83,7 @@ export default function Navbar() {
           }}>
             <Car size={20} color="white" />
           </div>
-          <span style={{ fontWeight: 800, fontSize: '18px', color: 'white', letterSpacing: '-0.5px' }}>
+          <span style={{ fontWeight: 800, fontSize: '18px', color: 'var(--text-primary)', letterSpacing: '-0.5px' }}>
             Car<span style={{ background: 'linear-gradient(135deg,#3b82f6,#8b5cf6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Config</span>
           </span>
         </Link>
@@ -96,14 +96,14 @@ export default function Navbar() {
             return (
               <li key={link.href}>
                 <Link href={link.href} style={{
-                  color: active ? 'white' : 'rgba(255,255,255,0.65)',
+                  color: active ? 'var(--text-primary)' : 'var(--text-muted)',
                   textDecoration: 'none',
                   fontSize: '14px',
                   fontWeight: active ? 600 : 400,
                   padding: '6px 14px',
                   borderRadius: '8px',
-                  background: active ? 'rgba(59,130,246,0.2)' : 'transparent',
-                  border: active ? '1px solid rgba(59,130,246,0.4)' : '1px solid transparent',
+                  background: active ? 'var(--glow-blue)' : 'transparent',
+                  border: active ? '1px solid var(--border)' : '1px solid transparent',
                   transition: 'all 0.2s ease',
                   display: 'block',
                 }}>
@@ -122,7 +122,7 @@ export default function Navbar() {
             style={{
               background: 'none',
               border: 'none',
-              color: 'white',
+              color: 'var(--text-primary)',
               cursor: 'pointer',
               padding: '6px',
               borderRadius: '8px',
@@ -131,7 +131,7 @@ export default function Navbar() {
               justifyContent: 'center',
               transition: 'background 0.2s',
             }}
-            onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
+            onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-glass-light)'}
             onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
           >
             {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
@@ -150,7 +150,7 @@ export default function Navbar() {
           {/* Hamburger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', padding: '4px', display: 'none' }}
+            style={{ background: 'none', border: 'none', color: 'var(--text-primary)', cursor: 'pointer', padding: '4px', display: 'none' }}
             className="show-mobile"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -161,17 +161,17 @@ export default function Navbar() {
       {/* Mobile menu */}
       {isOpen && (
         <div style={{
-          background: 'rgba(10,10,15,0.98)',
-          borderTop: '1px solid rgba(255,255,255,0.08)',
+          background: 'var(--bg-card)',
+          borderTop: '1px solid var(--border)',
           padding: '16px 24px 24px',
         }}>
           {navLinks.map(link => (
             <Link key={link.href} href={link.href}
               onClick={() => setIsOpen(false)}
               style={{
-                display: 'block', color: pathname === link.href ? '#3b82f6' : 'rgba(255,255,255,0.8)',
+                display: 'block', color: pathname === link.href ? 'var(--accent-blue)' : 'var(--text-primary)',
                 textDecoration: 'none', padding: '12px 0',
-                borderBottom: '1px solid rgba(255,255,255,0.06)',
+                borderBottom: '1px solid var(--border)',
                 fontWeight: pathname === link.href ? 600 : 400,
               }}>
               {link.label}
