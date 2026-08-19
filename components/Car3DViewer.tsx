@@ -710,9 +710,9 @@ export default function Car3DViewer({
           onClick={() => setIsRotating(!isRotating)}
           title={isRotating ? 'Pause auto rotation' : 'Play auto rotation'}
           style={{
-            width: '40px',
             height: '40px',
-            borderRadius: '12px',
+            padding: '0 14px',
+            borderRadius: '4px',
             background: 'var(--bg-card)',
             border: '1px solid var(--border)',
             color: 'var(--text-primary)',
@@ -720,15 +720,16 @@ export default function Car3DViewer({
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+            fontSize: '12px',
+            fontWeight: 600,
             transition: 'all 0.2s',
           }}
         >
-          {isRotating ? <Pause size={17} /> : <Play size={17} />}
+          {isRotating ? 'Pause' : 'Auto-Rotate'}
         </button>
 
         {viewMode === 'exterior' && (
-          <div style={{ display: 'flex', background: 'var(--bg-card)', borderRadius: '12px', border: '1px solid var(--border)', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+          <div style={{ display: 'flex', background: 'var(--bg-card)', borderRadius: '4px', border: '1px solid var(--border)', overflow: 'hidden' }}>
             <button
               onClick={() => {
                 if (cameraRef.current) {
