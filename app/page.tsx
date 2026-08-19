@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Box, ArrowRight, Calendar, Palette, Disc, Layers, Wrench, Sliders, CheckCircle2, Sparkles, Compass, Music, ShieldCheck, Cpu } from 'lucide-react';
+import { Box, ArrowRight, Calendar, Palette, Disc, Layers, Wrench, Sliders, CheckCircle2, Compass, Music, ShieldCheck, Cpu } from 'lucide-react';
 import { cars } from '@/lib/cars';
 
 const TYPING_TEXTS = ['3D CAD Blueprints.', 'Alloy Wheel Styles.', 'Trunk Audio Tuning.', 'Garage Appointments.'];
@@ -47,7 +47,7 @@ export default function HomePage() {
         {/* WebGL Badge */}
         <div className="fade-in-up">
           <span className="badge" style={{ padding: '6px 16px', marginBottom: '24px', display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '12px' }}>
-            <Sparkles size={14} style={{ color: 'var(--accent-blue)' }} /> WEBGL 3D CAD CUSTOMIZATION SUITE
+            <Cpu size={14} style={{ color: 'var(--accent-blue)' }} /> WEBGL 3D CAD CUSTOMIZATION SUITE
           </span>
         </div>
 
@@ -243,7 +243,7 @@ export default function HomePage() {
           {[
             { icon: ShieldCheck, title: '100% Fitment Accuracy', desc: 'Verified 3D CAD schematic dimensions' },
             { icon: Wrench, title: 'Partner Garages', desc: 'Verified technicians for home & shop visits' },
-            { icon: Sparkles, title: 'Free 3D Configurator', desc: 'Zero cost WebGL customizer suite' },
+            { icon: Cpu, title: 'Free 3D Configurator', desc: 'Zero cost WebGL customizer suite' },
           ].map(({ icon: Icon, title, desc }) => (
             <div key={title} style={{ display: 'flex', alignItems: 'center', gap: '16px', background: 'var(--bg-card)', padding: '20px', borderRadius: '4px', border: '1px solid var(--border)' }}>
               <div style={{ width: 42, height: 42, borderRadius: '50%', background: 'var(--bg-surface)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
