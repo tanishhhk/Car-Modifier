@@ -35,7 +35,7 @@ export default function BrandCard({ brand }: BrandCardProps) {
       {/* Logo area */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
         <div style={{
-          width: 44, height: 44, borderRadius: '4px',
+          width: 44, height: 44, borderRadius: '50%',
           background: 'var(--bg-surface)',
           border: '1px solid var(--border)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',

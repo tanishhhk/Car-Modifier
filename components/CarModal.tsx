@@ -30,7 +30,7 @@ export default function CarModal({ car, onClose, isFavorite, onToggleFavorite }:
             <button
               onClick={() => onToggleFavorite(car.id)}
               style={{
-                padding: '8px', borderRadius: '4px',
+                width: 36, height: 36, borderRadius: '50%',
                 background: isFavorite ? '#ef4444' : 'var(--bg-surface)',
                 border: '1px solid var(--border)',
                 cursor: 'pointer', color: isFavorite ? 'white' : 'var(--text-muted)',
@@ -40,7 +40,7 @@ export default function CarModal({ car, onClose, isFavorite, onToggleFavorite }:
               <Heart size={16} fill={isFavorite ? 'white' : 'none'} />
             </button>
             <button onClick={onClose} style={{
-              padding: '8px', borderRadius: '4px',
+              width: 36, height: 36, borderRadius: '50%',
               background: 'var(--bg-surface)',
               border: '1px solid var(--border)',
               cursor: 'pointer', color: 'var(--text-muted)',
@@ -72,7 +72,7 @@ export default function CarModal({ car, onClose, isFavorite, onToggleFavorite }:
                 onClick={() => setSelectedColor(color)}
                 title={color}
                 style={{
-                  width: 28, height: 28, borderRadius: '4px',
+                  width: 30, height: 30, borderRadius: '50%',
                   background: color,
                   border: selectedColor === color ? '2px solid var(--accent-blue)' : '1px solid var(--border)',
                   cursor: 'pointer',

@@ -50,7 +50,7 @@ export default function LoginPage() {
       {/* Left panel */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '60px', background: 'var(--bg-surface)', borderRight: '1px solid var(--border)' }}>
         <div style={{ maxWidth: '360px', textAlign: 'center' }}>
-          <div style={{ width: 64, height: 64, borderRadius: '4px', background: 'var(--accent-blue)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
+          <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'var(--accent-blue)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
             <Car size={32} color="white" />
           </div>
           <h2 style={{ fontWeight: 800, fontSize: '28px', marginBottom: '12px' }}>Welcome Back</h2>

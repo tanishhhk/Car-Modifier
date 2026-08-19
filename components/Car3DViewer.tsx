@@ -713,7 +713,7 @@ export default function Car3DViewer({
           style={{
             height: '40px',
             width: '40px',
-            borderRadius: '4px',
+            borderRadius: '50%',
             background: 'var(--bg-card)',
             border: '1px solid var(--border)',
             color: 'var(--text-primary)',
@@ -728,11 +728,10 @@ export default function Car3DViewer({
         </button>
 
         {viewMode === 'exterior' && (
-          <div style={{ display: 'flex', background: 'var(--bg-card)', borderRadius: '4px', border: '1px solid var(--border)', overflow: 'hidden' }}>
+          <div style={{ display: 'flex', gap: '6px' }}>
             <button
               onClick={() => {
                 if (cameraRef.current) {
-                  // Zoom in
                   const zoomFactor = 0.8;
                   const cam = cameraRef.current;
                   cam.position.multiplyScalar(zoomFactor);
@@ -742,8 +741,9 @@ export default function Car3DViewer({
               style={{
                 width: '40px',
                 height: '40px',
-                background: 'none',
-                border: 'none',
+                borderRadius: '50%',
+                background: 'var(--bg-card)',
+                border: '1px solid var(--border)',
                 color: 'var(--text-primary)',
                 display: 'flex',
                 alignItems: 'center',
@@ -755,7 +755,6 @@ export default function Car3DViewer({
             >
               +
             </button>
-            <div style={{ width: '1px', background: 'var(--border)' }} />
             <button
               onClick={() => {
                 if (cameraRef.current) {
@@ -768,8 +767,9 @@ export default function Car3DViewer({
               style={{
                 width: '40px',
                 height: '40px',
-                background: 'none',
-                border: 'none',
+                borderRadius: '50%',
+                background: 'var(--bg-card)',
+                border: '1px solid var(--border)',
                 color: 'var(--text-primary)',
                 display: 'flex',
                 alignItems: 'center',
@@ -779,7 +779,7 @@ export default function Car3DViewer({
                 fontWeight: 700,
               }}
             >
-              -
+              −
             </button>
           </div>
         )}

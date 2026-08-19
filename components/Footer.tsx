@@ -17,7 +17,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
-              <div style={{ width: 34, height: 34, borderRadius: '4px', background: 'var(--accent-blue)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--accent-blue)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Car size={20} color="white" />
               </div>
               <span style={{ fontWeight: 800, fontSize: '18px', color: 'white' }}>

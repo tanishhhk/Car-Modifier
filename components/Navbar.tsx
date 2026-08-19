@@ -72,7 +72,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
           <div style={{
-            width: 34, height: 34, borderRadius: '4px',
+            width: 36, height: 36, borderRadius: '50%',
             background: 'var(--accent-blue)', color: 'white',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
@@ -96,7 +96,7 @@ export default function Navbar() {
                   fontSize: '14px',
                   fontWeight: active ? 600 : 400,
                   padding: '6px 14px',
-                  borderRadius: '4px',
+                  borderRadius: '9999px',
                   background: active ? 'var(--bg-surface)' : 'transparent',
                   border: active ? '1px solid var(--border)' : '1px solid transparent',
                   transition: 'all 0.2s ease',
@@ -115,29 +115,27 @@ export default function Navbar() {
             onClick={toggleTheme}
             aria-label="Toggle theme"
             style={{
+              width: 36,
+              height: 36,
+              borderRadius: '50%',
               background: 'var(--bg-surface)',
               border: '1px solid var(--border)',
               color: 'var(--text-primary)',
               cursor: 'pointer',
-              padding: '6px 10px',
-              borderRadius: '4px',
-              fontSize: '12px',
-              fontWeight: 600,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '6px',
             }}
           >
-            {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
+            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
           </button>
 
           {isLoggedIn ? (
-            <button onClick={handleLogout} className="btn-ghost" style={{ padding: '8px 16px', fontSize: '14px', borderRadius: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <button onClick={handleLogout} className="btn-ghost" style={{ padding: '8px 16px', fontSize: '14px', borderRadius: '9999px', display: 'flex', alignItems: 'center', gap: '6px' }}>
               <LogOut size={16} /> Logout
             </button>
           ) : (
-            <Link href="/login" className="btn-primary" style={{ padding: '8px 18px', fontSize: '14px', textDecoration: 'none', borderRadius: '4px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+            <Link href="/login" className="btn-primary" style={{ padding: '8px 18px', fontSize: '14px', textDecoration: 'none', borderRadius: '9999px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
               <LogIn size={16} /> Login
             </Link>
           )}
@@ -145,7 +143,7 @@ export default function Navbar() {
           {/* Hamburger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            style={{ background: 'none', border: '1px solid var(--border)', color: 'var(--text-primary)', cursor: 'pointer', padding: '6px 10px', borderRadius: '4px', display: 'none', alignItems: 'center', justifyContent: 'center' }}
+            style={{ width: 36, height: 36, borderRadius: '50%', background: 'none', border: '1px solid var(--border)', color: 'var(--text-primary)', cursor: 'pointer', display: 'none', alignItems: 'center', justifyContent: 'center' }}
             className="show-mobile"
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}

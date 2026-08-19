@@ -48,7 +48,7 @@ export default function CarCard({ car, isFavorite, onToggleFavorite, onConfigure
             onClick={() => onToggleFavorite(car.id)}
             title={isFavorite ? 'Remove from saved' : 'Save model'}
             style={{
-              padding: '6px', borderRadius: '4px',
+              width: '32px', height: '32px', borderRadius: '50%',
               background: isFavorite ? '#ef4444' : 'rgba(0,0,0,0.6)',
               border: '1px solid rgba(255,255,255,0.2)',
               cursor: 'pointer', color: 'white',

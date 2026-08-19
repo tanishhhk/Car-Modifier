@@ -268,7 +268,7 @@ function ModelsContent() {
                       style={{
                         width: '32px',
                         height: '32px',
-                        borderRadius: '4px',
+                        borderRadius: '50%',
                         background: color,
                         border: paintColor === color ? '2px solid var(--accent-blue)' : '1px solid var(--border)',
                         cursor: 'pointer',
@@ -286,7 +286,7 @@ function ModelsContent() {
                         width: '32px',
                         height: '32px',
                         border: 'none',
-                        borderRadius: '4px',
+                        borderRadius: '50%',
                         cursor: 'pointer',
                         padding: 0,
                         background: 'transparent',
@@ -493,7 +493,7 @@ function ModelsContent() {
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
           {CATEGORIES.map(cat => (
             <button key={cat} onClick={() => setCategory(cat)} style={{
-              padding: '8px 16px', borderRadius: '4px', border: '1px solid var(--border)', cursor: 'pointer',
+              padding: '8px 18px', borderRadius: '9999px', border: '1px solid var(--border)', cursor: 'pointer',
               fontWeight: 600, fontSize: '13px', textTransform: 'capitalize',
               background: category === cat ? 'var(--accent-blue)' : 'var(--bg-surface)',
               color: category === cat ? 'white' : 'var(--text-primary)',
