@@ -265,6 +265,7 @@ function ModelsContent() {
                       key={color}
                       onClick={() => setPaintColor(color)}
                       title={color}
+                      className="icon-btn-hover"
                       style={{
                         width: '32px',
                         height: '32px',

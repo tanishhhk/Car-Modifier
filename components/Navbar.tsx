@@ -114,6 +114,7 @@ export default function Navbar() {
           <button
             onClick={toggleTheme}
             aria-label="Toggle theme"
+            className="icon-btn-hover"
             style={{
               width: 36,
               height: 36,

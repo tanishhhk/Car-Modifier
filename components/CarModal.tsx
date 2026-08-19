@@ -29,6 +29,7 @@ export default function CarModal({ car, onClose, isFavorite, onToggleFavorite }:
           <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
             <button
               onClick={() => onToggleFavorite(car.id)}
+              className="icon-btn-hover"
               style={{
                 width: 36, height: 36, borderRadius: '50%',
                 background: isFavorite ? '#ef4444' : 'var(--bg-surface)',
@@ -39,13 +40,17 @@ export default function CarModal({ car, onClose, isFavorite, onToggleFavorite }:
             >
               <Heart size={16} fill={isFavorite ? 'white' : 'none'} />
             </button>
-            <button onClick={onClose} style={{
-              width: 36, height: 36, borderRadius: '50%',
-              background: 'var(--bg-surface)',
-              border: '1px solid var(--border)',
-              cursor: 'pointer', color: 'var(--text-muted)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-            }}>
+            <button
+              onClick={onClose}
+              className="icon-btn-hover"
+              style={{
+                width: 36, height: 36, borderRadius: '50%',
+                background: 'var(--bg-surface)',
+                border: '1px solid var(--border)',
+                cursor: 'pointer', color: 'var(--text-muted)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}
+            >
               <X size={18} />
             </button>
           </div>
@@ -71,6 +76,7 @@ export default function CarModal({ car, onClose, isFavorite, onToggleFavorite }:
                 key={color}
                 onClick={() => setSelectedColor(color)}
                 title={color}
+                className="icon-btn-hover"
                 style={{
                   width: 30, height: 30, borderRadius: '50%',
                   background: color,

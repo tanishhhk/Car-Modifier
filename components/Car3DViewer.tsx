@@ -710,6 +710,7 @@ export default function Car3DViewer({
         <button
           onClick={() => setIsRotating(!isRotating)}
           title={isRotating ? 'Pause auto rotation' : 'Play auto rotation'}
+          className="icon-btn-hover"
           style={{
             height: '40px',
             width: '40px',
@@ -738,6 +739,7 @@ export default function Car3DViewer({
                 }
               }}
               title="Zoom In"
+              className="icon-btn-hover"
               style={{
                 width: '40px',
                 height: '40px',
@@ -764,6 +766,7 @@ export default function Car3DViewer({
                 }
               }}
               title="Zoom Out"
+              className="icon-btn-hover"
               style={{
                 width: '40px',
                 height: '40px',

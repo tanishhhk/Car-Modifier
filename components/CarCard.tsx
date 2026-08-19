@@ -47,6 +47,7 @@ export default function CarCard({ car, isFavorite, onToggleFavorite, onConfigure
           <button
             onClick={() => onToggleFavorite(car.id)}
             title={isFavorite ? 'Remove from saved' : 'Save model'}
+            className="icon-btn-hover"
             style={{
               width: '32px', height: '32px', borderRadius: '50%',
               background: isFavorite ? '#ef4444' : 'rgba(0,0,0,0.6)',
