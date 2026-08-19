@@ -28,7 +28,7 @@ export default function CarCard({ car, isFavorite, onToggleFavorite, onConfigure
       }}
     >
       {/* Image */}
-      <div style={{ position: 'relative', width: '100%', paddingTop: '56.25%', background: '#0d0d18', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', width: '100%', paddingTop: '56.25%', background: '#16181d', overflow: 'hidden' }}>
         {!imgError ? (
           <Image
             src={car.img}

@@ -57,7 +57,7 @@ export default function CarModal({ car, onClose, isFavorite, onToggleFavorite }:
         </div>
 
         {/* Image */}
-        <div style={{ position: 'relative', width: '100%', paddingTop: '52%', borderRadius: '4px', overflow: 'hidden', background: '#0d0d18', marginBottom: '20px' }}>
+        <div style={{ position: 'relative', width: '100%', paddingTop: '52%', borderRadius: '4px', overflow: 'hidden', background: '#16181d', marginBottom: '20px' }}>
           {!imgError ? (
             <Image src={car.img} alt={car.name} fill style={{ objectFit: 'cover' }} onError={() => setImgError(true)} sizes="680px" />
           ) : (

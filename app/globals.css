@@ -2,14 +2,14 @@
 @import "tailwindcss";
 
 
-/* ─── Design Tokens ─────────────────────────────────────────── */
+/* ─── Design Tokens (Red & Metallic Gray Theme) ─────────────── */
 :root {
   --bg-primary:   #f8fafc;
   --bg-card:      #f1f5f9;
   --bg-surface:   #e2e8f0;
-  --accent-blue:  #1d4ed8;
-  --accent-violet:#5b21b6;
-  --accent-cyan:  #0e7490;
+  --accent-blue:  #dc2626;
+  --accent-violet:#b91c1c;
+  --accent-cyan:  #ef4444;
   --text-primary: #0f172a;
   --text-muted:   #475569;
   --border:       rgba(0,0,0,0.12);
@@ -20,19 +20,19 @@
 }
 
 html.dark {
-  --bg-primary:   #0a0a0f;
-  --bg-card:      #12121a;
-  --bg-surface:   #1a1a2e;
-  --accent-blue:  #3b82f6;
-  --accent-violet:#8b5cf6;
-  --accent-cyan:  #06b6d4;
+  --bg-primary:   #0e0f12;
+  --bg-card:      #16181d;
+  --bg-surface:   #1f222a;
+  --accent-blue:  #ef4444;
+  --accent-violet:#dc2626;
+  --accent-cyan:  #f87171;
   --text-primary: #f1f5f9;
   --text-muted:   #94a3b8;
   --border:       rgba(255,255,255,0.08);
   --glow-blue:    transparent;
   --glow-violet:  transparent;
-  --bg-glass:     #12121a;
-  --bg-glass-light: #181824;
+  --bg-glass:     #16181d;
+  --bg-glass-light: #1f222a;
 }
 
 /* ─── Base ───────────────────────────────────────────────────── */
@@ -143,7 +143,7 @@ input:focus, select:focus, textarea:focus {
   will-change: transform;
 }
 .btn-primary:hover { 
-  background: #1d4ed8;
+  background: #b91c1c;
   transform: translateY(-2px);
   box-shadow: none !important;
 }
@@ -167,7 +167,7 @@ input:focus, select:focus, textarea:focus {
 .btn-ghost:hover {
   border-color: var(--accent-blue);
   color: var(--accent-blue);
-  background: rgba(59,130,246,0.05);
+  background: rgba(239,68,68,0.08);
   transform: translateY(-2px);
 }
 .btn-ghost:active {
