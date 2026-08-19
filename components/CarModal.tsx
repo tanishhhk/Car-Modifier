@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { X, Gauge, Fuel, Users, Zap, Heart, ArrowRight } from 'lucide-react';
 import type { CarModel } from '@/lib/cars';
 
 interface CarModalProps {
@@ -18,40 +19,40 @@ export default function CarModal({ car, onClose, isFavorite, onToggleFavorite }:
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-panel" onClick={e => e.stopPropagation()} style={{ borderRadius: '4px 4px 0 0' }}>
+      <div className="modal-panel" onClick={e => e.stopPropagation()} style={{ borderRadius: '4px' }}>
         {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
           <div>
             <p style={{ color: 'var(--text-muted)', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 4px' }}>{car.brand}</p>
             <h2 style={{ color: 'var(--text-primary)', fontWeight: 800, fontSize: '26px', margin: 0 }}>{car.name}</h2>
           </div>
-          <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
             <button
               onClick={() => onToggleFavorite(car.id)}
               style={{
-                padding: '6px 12px', borderRadius: '4px',
-                background: isFavorite ? 'var(--accent-blue)' : 'var(--bg-surface)',
+                padding: '8px', borderRadius: '4px',
+                background: isFavorite ? '#ef4444' : 'var(--bg-surface)',
                 border: '1px solid var(--border)',
                 cursor: 'pointer', color: isFavorite ? 'white' : 'var(--text-muted)',
-                fontSize: '12px', fontWeight: 600,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}
             >
-              {isFavorite ? 'Saved' : 'Save'}
+              <Heart size={16} fill={isFavorite ? 'white' : 'none'} />
             </button>
             <button onClick={onClose} style={{
-              padding: '6px 12px', borderRadius: '4px',
+              padding: '8px', borderRadius: '4px',
               background: 'var(--bg-surface)',
               border: '1px solid var(--border)',
               cursor: 'pointer', color: 'var(--text-muted)',
-              fontSize: '12px', fontWeight: 600,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}>
-              Close
+              <X size={18} />
             </button>
           </div>
         </div>
 
         {/* Image */}
-        <div style={{ position: 'relative', width: '100%', paddingTop: '52%', borderRadius: '4px', overflow: 'hidden', background: '#0d0d18', marginBottom: '24px' }}>
+        <div style={{ position: 'relative', width: '100%', paddingTop: '52%', borderRadius: '4px', overflow: 'hidden', background: '#0d0d18', marginBottom: '20px' }}>
           {!imgError ? (
             <Image src={car.img} alt={car.name} fill style={{ objectFit: 'cover' }} onError={() => setImgError(true)} sizes="680px" />
           ) : (
@@ -62,7 +63,7 @@ export default function CarModal({ car, onClose, isFavorite, onToggleFavorite }:
         </div>
 
         {/* Color picker */}
-        <div style={{ marginBottom: '24px' }}>
+        <div style={{ marginBottom: '20px' }}>
           <p style={{ color: 'var(--text-muted)', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '10px' }}>Choose Color</p>
           <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
             {car.colors.map(color => (
@@ -82,27 +83,33 @@ export default function CarModal({ car, onClose, isFavorite, onToggleFavorite }:
         </div>
 
         {/* Specs grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '12px', marginBottom: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '10px', marginBottom: '20px' }}>
           {[
-            { label: 'Engine', value: car.engine },
-            { label: 'Mileage', value: car.mileage },
-            { label: 'Seating', value: `${car.seats} Seats` },
-            ...(car.horsepower ? [{ label: 'Power', value: car.horsepower }] : []),
-          ].map(({ label, value }) => (
+            { icon: Fuel, label: 'Engine', value: car.engine },
+            { icon: Gauge, label: 'Mileage', value: car.mileage },
+            { icon: Users, label: 'Seating', value: `${car.seats} Seats` },
+            ...(car.horsepower ? [{ icon: Zap, label: 'Power', value: car.horsepower }] : []),
+          ].map(({ icon: Icon, label, value }) => (
             <div key={label} style={{
               background: 'var(--bg-surface)',
               border: '1px solid var(--border)',
               borderRadius: '4px',
-              padding: '12px',
+              padding: '10px 12px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
             }}>
-              <p style={{ color: 'var(--text-muted)', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', margin: '0 0 4px' }}>{label}</p>
-              <p style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '13px', margin: 0 }}>{value}</p>
+              <Icon size={16} style={{ color: 'var(--accent-blue)', flexShrink: 0 }} />
+              <div>
+                <p style={{ color: 'var(--text-muted)', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', margin: 0 }}>{label}</p>
+                <p style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '12px', margin: 0 }}>{value}</p>
+              </div>
             </div>
           ))}
         </div>
 
         {/* Description */}
-        <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: '1.6', marginBottom: '24px' }}>{car.description}</p>
+        <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: '1.6', marginBottom: '20px' }}>{car.description}</p>
 
         {/* Price + CTA */}
         <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -113,9 +120,9 @@ export default function CarModal({ car, onClose, isFavorite, onToggleFavorite }:
           <Link
             href={`/test-drive?model=${encodeURIComponent(car.name)}`}
             className="btn-primary"
-            style={{ textDecoration: 'none', borderRadius: '4px' }}
+            style={{ textDecoration: 'none', borderRadius: '4px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
           >
-            Book Garage Consult
+            Book Garage Consult <ArrowRight size={16} />
           </Link>
         </div>
       </div>

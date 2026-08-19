@@ -1,14 +1,8 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { ArrowRight } from 'lucide-react';
 import type { Brand } from '@/lib/brands';
-
-const segmentColors: Record<string, string> = {
-  budget:  'badge-green',
-  premium: 'badge-blue',
-  luxury:  'badge-violet',
-  sports:  'badge-rose',
-};
 
 interface BrandCardProps {
   brand: Brand;
@@ -62,8 +56,8 @@ export default function BrandCard({ brand }: BrandCardProps) {
       {/* Footer */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <span className="badge" style={{ textTransform: 'capitalize' }}>{brand.segment}</span>
-        <span style={{ color: 'var(--text-muted)', fontSize: '12px', fontWeight: 600 }}>
-          {brand.modelCount} {brand.modelCount === 1 ? 'Model' : 'Models'}
+        <span style={{ color: 'var(--accent-blue)', fontSize: '12px', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+          {brand.modelCount} {brand.modelCount === 1 ? 'Model' : 'Models'} <ArrowRight size={14} />
         </span>
       </div>
     </div>

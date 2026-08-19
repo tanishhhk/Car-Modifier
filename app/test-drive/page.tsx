@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { Check, ChevronRight, ChevronLeft, User, Mail, Phone, Car, Calendar, Clock, MapPin, Wrench, Home } from 'lucide-react';
 import { cars } from '@/lib/cars';
 
 const TIME_SLOTS = ['9:00 AM','10:00 AM','11:00 AM','12:00 PM','2:00 PM','3:00 PM','4:00 PM','5:00 PM'];
@@ -91,6 +92,9 @@ function GarageAppointmentContent() {
   if (submitted) return (
     <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px 24px' }}>
       <div style={{ textAlign: 'center', maxWidth: '540px' }}>
+        <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'rgba(34,197,94,0.15)', border: '2px solid #22c55e', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
+          <Check size={32} style={{ color: '#22c55e' }} />
+        </div>
         <h2 style={{ fontWeight: 800, fontSize: '32px', marginBottom: '12px', color: 'var(--text-primary)' }}>Appointment Scheduled</h2>
         <p style={{ color: 'var(--text-muted)', fontSize: '16px', lineHeight: '1.75', marginBottom: '16px' }}>
           Your appointment is confirmed for <strong style={{ color: 'var(--text-primary)' }}>{form.date}</strong> at <strong style={{ color: 'var(--text-primary)' }}>{form.time}</strong> with <strong style={{ color: 'var(--text-primary)' }}>{form.garageName}</strong>.
@@ -98,15 +102,15 @@ function GarageAppointmentContent() {
         
         {form.visitType === 'home' ? (
           <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '4px', padding: '16px', marginBottom: '24px', textAlign: 'left' }}>
-            <p style={{ margin: 0, fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)' }}>
-              Home Visit Address
+            <p style={{ margin: 0, fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Home size={16} style={{ color: 'var(--accent-blue)' }} /> Home Visit Address
             </p>
             <p style={{ margin: '6px 0 0', color: 'var(--text-muted)', fontSize: '13px' }}>{form.address}</p>
           </div>
         ) : (
           <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '4px', padding: '16px', marginBottom: '24px', textAlign: 'left' }}>
-            <p style={{ margin: 0, fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)' }}>
-              Garage Shop Location
+            <p style={{ margin: 0, fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <MapPin size={16} style={{ color: 'var(--accent-blue)' }} /> Garage Shop Location
             </p>
             <p style={{ margin: '6px 0 0', color: 'var(--text-muted)', fontSize: '13px' }}>Partner shop located in {form.location}. Please bring your configuration details.</p>
           </div>
@@ -138,7 +142,7 @@ function GarageAppointmentContent() {
             <div key={label} style={{ display: 'flex', alignItems: 'center' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
                 <div className={`step-dot ${state}`}>
-                  {n}
+                  {state === 'done' ? <Check size={14} /> : n}
                 </div>
                 <span style={{ fontSize: '11px', color: state === 'active' ? 'var(--accent-blue)' : 'var(--text-muted)', fontWeight: state === 'active' ? 700 : 400, whiteSpace: 'nowrap' }}>{label}</span>
               </div>
@@ -153,8 +157,8 @@ function GarageAppointmentContent() {
         <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '4px', padding: '36px' }}>
           {step === 1 && (
             <div>
-              <h2 style={{ fontWeight: 700, fontSize: '18px', marginBottom: '24px', color: 'var(--text-primary)' }}>
-                Contact Details
+              <h2 style={{ fontWeight: 700, fontSize: '18px', marginBottom: '24px', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <User size={20} style={{ color: 'var(--accent-blue)' }} /> Contact Details
               </h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 <div>
@@ -183,8 +187,8 @@ function GarageAppointmentContent() {
 
           {step === 2 && (
             <div>
-              <h2 style={{ fontWeight: 700, fontSize: '18px', marginBottom: '24px', color: 'var(--text-primary)' }}>
-                Garage & Time Slot
+              <h2 style={{ fontWeight: 700, fontSize: '18px', marginBottom: '24px', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Wrench size={20} style={{ color: 'var(--accent-blue)' }} /> Garage & Time Slot
               </h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 {/* Visit Type */}
@@ -196,28 +200,28 @@ function GarageAppointmentContent() {
                       onClick={() => set('visitType', 'garage')}
                       style={{
                         padding: '12px', borderRadius: '4px', cursor: 'pointer',
-                        fontSize: '13px', fontWeight: 600,
+                        fontSize: '13px', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
                         background: form.visitType === 'garage' ? 'var(--accent-blue)' : 'var(--bg-surface)',
                         color: form.visitType === 'garage' ? 'white' : 'var(--text-primary)',
                         border: '1px solid var(--border)',
                         transition: 'all 0.2s',
                       }}
                     >
-                      I will visit shop
+                      <Wrench size={16} /> I will visit shop
                     </button>
                     <button
                       type="button"
                       onClick={() => set('visitType', 'home')}
                       style={{
                         padding: '12px', borderRadius: '4px', cursor: 'pointer',
-                        fontSize: '13px', fontWeight: 600,
+                        fontSize: '13px', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
                         background: form.visitType === 'home' ? 'var(--accent-blue)' : 'var(--bg-surface)',
                         color: form.visitType === 'home' ? 'white' : 'var(--text-primary)',
                         border: '1px solid var(--border)',
                         transition: 'all 0.2s',
                       }}
                     >
-                      Visit my location
+                      <Home size={16} /> Visit my location
                     </button>
                   </div>
                 </div>
@@ -298,22 +302,23 @@ function GarageAppointmentContent() {
 
           {step === 3 && (
             <div>
-              <h2 style={{ fontWeight: 700, fontSize: '18px', marginBottom: '24px', color: 'var(--text-primary)' }}>
-                Review & Confirm
+              <h2 style={{ fontWeight: 700, fontSize: '18px', marginBottom: '24px', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Check size={20} style={{ color: '#16a34a' }} /> Review & Confirm
               </h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 {[
-                  { label: 'Name', value: form.name },
-                  { label: 'Email', value: form.email },
-                  { label: 'Phone', value: `${form.countryCode} ${form.phone}` },
-                  { label: 'Car & Variant', value: `${form.model} ${form.variant ? `(${form.variant})` : ''}` },
-                  { label: 'Garage', value: form.garageName },
-                  { label: 'Visit Type', value: form.visitType === 'home' ? 'Home Visit (We visit you)' : 'Garage Visit (You visit shop)' },
-                  { label: 'Date', value: form.date },
-                  { label: 'Time', value: form.time },
-                  { label: 'City', value: form.location },
-                ].map(({ label, value }) => (
+                  { icon: User, label: 'Name', value: form.name },
+                  { icon: Mail, label: 'Email', value: form.email },
+                  { icon: Phone, label: 'Phone', value: `${form.countryCode} ${form.phone}` },
+                  { icon: Car, label: 'Car & Variant', value: `${form.model} ${form.variant ? `(${form.variant})` : ''}` },
+                  { icon: Wrench, label: 'Garage', value: form.garageName },
+                  { icon: Home, label: 'Visit Type', value: form.visitType === 'home' ? 'Home Visit (We visit you)' : 'Garage Visit (You visit shop)' },
+                  { icon: Calendar, label: 'Date', value: form.date },
+                  { icon: Clock, label: 'Time', value: form.time },
+                  { icon: MapPin, label: 'City', value: form.location },
+                ].map(({ icon: Icon, label, value }) => (
                   <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '14px', background: 'var(--bg-surface)', borderRadius: '4px', padding: '12px 16px', border: '1px solid var(--border)' }}>
+                    <Icon size={16} style={{ color: 'var(--accent-blue)', flexShrink: 0 }} />
                     <span style={{ color: 'var(--text-muted)', fontSize: '13px', minWidth: '110px' }}>{label}</span>
                     <span style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '14px' }}>{value || '-'}</span>
                   </div>
@@ -324,11 +329,11 @@ function GarageAppointmentContent() {
 
           {/* Nav buttons */}
           <div style={{ display: 'flex', gap: '12px', marginTop: '32px' }}>
-            {step > 1 && <button onClick={back} className="btn-ghost" style={{ borderRadius: '4px' }}>Back</button>}
+            {step > 1 && <button onClick={back} className="btn-ghost" style={{ borderRadius: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}><ChevronLeft size={16} /> Back</button>}
             <div style={{ flex: 1 }} />
             {step < 3
-              ? <button onClick={next} className="btn-primary" style={{ borderRadius: '4px' }}>Next</button>
-              : <button onClick={submit} className="btn-primary" style={{ borderRadius: '4px' }}>Confirm Appointment</button>
+              ? <button onClick={next} className="btn-primary" style={{ borderRadius: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>Next <ChevronRight size={16} /></button>
+              : <button onClick={submit} className="btn-primary" style={{ borderRadius: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}><Check size={16} /> Confirm Appointment</button>
             }
           </div>
         </div>
@@ -339,8 +344,8 @@ function GarageAppointmentContent() {
           {/* 3D Customization summary card (if prefilled) */}
           {carObj && (
             <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '4px', padding: '24px' }}>
-              <h3 style={{ color: 'var(--text-primary)', fontWeight: 700, margin: '0 0 16px', fontSize: '15px' }}>
-                Configuration Specs
+              <h3 style={{ color: 'var(--text-primary)', fontWeight: 700, margin: '0 0 16px', fontSize: '15px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Car size={18} style={{ color: 'var(--accent-blue)' }} /> Configuration Specs
               </h3>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -390,7 +395,7 @@ function GarageAppointmentContent() {
             <h3 style={{ color: 'var(--text-primary)', fontWeight: 700, marginBottom: '16px', fontSize: '15px' }}>Garage Options</h3>
             {['Garage team will visit you or you can visit them','Discuss alloy rims, wraps, and subwoofer acoustics','Get custom quotes based on your Three.js CAD specs','Expert installation with full replacement warranties'].map(point => (
               <div key={point} style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
-                <div style={{ width: 6, height: 6, borderRadius: '1px', background: 'var(--accent-blue)', flexShrink: 0, marginTop: '6px' }} />
+                <Check size={16} style={{ color: '#16a34a', flexShrink: 0, marginTop: '2px' }} />
                 <p style={{ color: 'var(--text-muted)', fontSize: '14px', margin: 0, lineHeight: '1.5' }}>{point}</p>
               </div>
             ))}

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
+import { Search, LayoutGrid, LayoutList, X, ArrowLeft, ArrowRight, Compass, Hammer, Disc, Music, Layers } from 'lucide-react';
 import Link from 'next/link';
 import { cars } from '@/lib/cars';
 import type { CarModel } from '@/lib/cars';
@@ -149,7 +150,7 @@ function ModelsContent() {
                 padding: 0,
               }}
             >
-              ← Back to Catalog
+              <ArrowLeft size={16} /> Back to Catalog
             </button>
             <h1 style={{ fontSize: 'clamp(22px, 3.5vw, 32px)', fontWeight: 800, margin: 0, color: 'var(--text-primary)' }}>
               Configure {selectedCar.brand} {selectedCar.name}
@@ -192,25 +193,25 @@ function ModelsContent() {
                   onClick={() => setViewMode('exterior')}
                   style={{
                     padding: '8px 14px', borderRadius: '4px', border: 'none', cursor: 'pointer',
-                    fontSize: '13px', fontWeight: 600,
+                    fontSize: '13px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px',
                     background: viewMode === 'exterior' ? 'var(--accent-blue)' : 'transparent',
                     color: viewMode === 'exterior' ? 'white' : 'var(--text-muted)',
                     transition: 'all 0.2s',
                   }}
                 >
-                  Exterior
+                  <Compass size={15} /> Exterior
                 </button>
                 <button
                   onClick={() => setViewMode('interior')}
                   style={{
                     padding: '8px 14px', borderRadius: '4px', border: 'none', cursor: 'pointer',
-                    fontSize: '13px', fontWeight: 600,
+                    fontSize: '13px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px',
                     background: viewMode === 'interior' ? 'var(--accent-blue)' : 'transparent',
                     color: viewMode === 'interior' ? 'white' : 'var(--text-muted)',
                     transition: 'all 0.2s',
                   }}
                 >
-                  Interior (360°)
+                  <Compass size={15} /> Interior (360°)
                 </button>
               </div>
 
@@ -222,13 +223,13 @@ function ModelsContent() {
                   onClick={() => setTrunkOpen(!trunkOpen)}
                   style={{
                     padding: '8px 16px', borderRadius: '4px', cursor: 'pointer',
-                    fontSize: '13px', fontWeight: 600,
+                    fontSize: '13px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px',
                     background: trunkOpen ? 'var(--bg-surface)' : 'var(--bg-card)',
                     color: trunkOpen ? 'var(--accent-blue)' : 'var(--text-muted)',
                     border: '1px solid var(--border)',
                   }}
                 >
-                  {trunkOpen ? 'Close Trunk' : 'Open Trunk'}
+                  <Layers size={15} /> {trunkOpen ? 'Close Trunk' : 'Open Trunk'}
                 </button>
               )}
 
@@ -237,13 +238,13 @@ function ModelsContent() {
                 onClick={() => setCadMode(!cadMode)}
                 style={{
                   padding: '8px 16px', borderRadius: '4px', cursor: 'pointer',
-                  fontSize: '13px', fontWeight: 600,
+                  fontSize: '13px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px',
                   background: cadMode ? 'var(--bg-surface)' : 'var(--bg-card)',
                   color: cadMode ? '#16a34a' : 'var(--text-muted)',
                   border: '1px solid var(--border)',
                 }}
               >
-                {cadMode ? 'CAD Wireframe ON' : 'Show CAD Model'}
+                <Layers size={15} /> {cadMode ? 'CAD Wireframe ON' : 'Show CAD Model'}
               </button>
             </div>
           </div>
@@ -255,8 +256,8 @@ function ModelsContent() {
               
               {/* Paint Selection */}
               <div>
-                <h3 style={{ fontSize: '14px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', margin: '0 0 12px' }}>
-                  Paint Finish
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', margin: '0 0 12px' }}>
+                  <Hammer size={15} style={{ color: 'var(--accent-blue)' }} /> Paint Finish
                 </h3>
                 <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
                   {selectedCar.colors.map(color => (
@@ -298,8 +299,8 @@ function ModelsContent() {
 
               {/* Alloys Selection */}
               <div>
-                <h3 style={{ fontSize: '14px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', margin: '0 0 12px' }}>
-                  Alloy Wheels
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', margin: '0 0 12px' }}>
+                  <Disc size={15} style={{ color: 'var(--accent-blue)' }} /> Alloy Wheels
                 </h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {(['spoke', 'star', 'mesh', 'redline'] as const).map(style => (
@@ -330,8 +331,8 @@ function ModelsContent() {
 
               {/* Woofers Selection */}
               <div>
-                <h3 style={{ fontSize: '14px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', margin: '0 0 12px' }}>
-                  Subwoofer Sound System
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', margin: '0 0 12px' }}>
+                  <Music size={15} style={{ color: 'var(--accent-blue)' }} /> Subwoofer Sound System
                 </h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {(['none', 'bassking', 'jbl', 'sony'] as const).map(style => (
@@ -369,8 +370,8 @@ function ModelsContent() {
 
               {/* Interiors Selection */}
               <div>
-                <h3 style={{ fontSize: '14px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', margin: '0 0 12px' }}>
-                  Cabin Seats & Trim
+                <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', margin: '0 0 12px' }}>
+                  <Layers size={15} style={{ color: 'var(--accent-blue)' }} /> Cabin Seats & Trim
                 </h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {(['#d97706', '#ef4444', '#fef08a', '#09090b'] as const).map(style => (
@@ -445,10 +446,11 @@ function ModelsContent() {
                 fontSize: '14px',
                 display: 'inline-flex',
                 alignItems: 'center',
+                gap: '8px',
                 borderRadius: '4px',
               }}
             >
-              Schedule Garage Appointment
+              Schedule Garage Appointment <ArrowRight size={16} />
             </button>
           </div>
         </div>
@@ -483,7 +485,8 @@ function ModelsContent() {
       <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center', marginBottom: '32px' }}>
         {/* Search */}
         <div style={{ flex: '1 1 260px', position: 'relative', minWidth: '200px' }}>
-          <input type="text" placeholder="Search models..." value={search} onChange={e => setSearch(e.target.value)} className="form-input" style={{ paddingLeft: '14px', borderRadius: '4px' }} />
+          <Search size={16} style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', pointerEvents: 'none' }} />
+          <input type="text" placeholder="Search models..." value={search} onChange={e => setSearch(e.target.value)} className="form-input" style={{ paddingLeft: '40px', borderRadius: '4px' }} />
         </div>
 
         {/* Category pills */}
@@ -504,18 +507,18 @@ function ModelsContent() {
         {/* View toggle */}
         <div style={{ display: 'flex', border: '1px solid var(--border)', borderRadius: '4px', overflow: 'hidden' }}>
           <button onClick={() => setIsGrid(true)} style={{
-            padding: '8px 14px', background: isGrid ? 'var(--accent-blue)' : 'var(--bg-surface)',
+            padding: '8px 12px', background: isGrid ? 'var(--accent-blue)' : 'var(--bg-surface)',
             border: 'none', cursor: 'pointer', color: isGrid ? 'white' : 'var(--text-muted)',
-            fontSize: '12px', fontWeight: 600,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
-            Grid
+            <LayoutGrid size={16} />
           </button>
           <button onClick={() => setIsGrid(false)} style={{
-            padding: '8px 14px', background: !isGrid ? 'var(--accent-blue)' : 'var(--bg-surface)',
+            padding: '8px 12px', background: !isGrid ? 'var(--accent-blue)' : 'var(--bg-surface)',
             border: 'none', cursor: 'pointer', color: !isGrid ? 'white' : 'var(--text-muted)',
-            fontSize: '12px', fontWeight: 600,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
-            List
+            <LayoutList size={16} />
           </button>
         </div>
       </div>
@@ -556,9 +559,9 @@ function ModelsContent() {
               <h3 style={{ fontSize: '18px', fontWeight: 800, margin: 0, color: 'var(--text-primary)' }}>Select CAD Model</h3>
               <button
                 onClick={() => setVariantSelectionCar(null)}
-                style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '13px', fontWeight: 600 }}
+                style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
               >
-                Close
+                <X size={18} />
               </button>
             </div>
             <p style={{ color: 'var(--text-muted)', fontSize: '13px', margin: '0 0 20px', lineHeight: '1.5' }}>
@@ -583,6 +586,7 @@ function ModelsContent() {
                   }}
                 >
                   {variant}
+                  <ArrowRight size={16} />
                 </button>
               ))}
             </div>

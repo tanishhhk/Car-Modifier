@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { Search } from 'lucide-react';
 import { brands } from '@/lib/brands';
 import BrandCard from '@/components/BrandCard';
 
@@ -51,13 +52,14 @@ export default function BrandsPage() {
 
       {/* Search */}
       <div style={{ maxWidth: '400px', margin: '0 auto 40px', position: 'relative' }}>
+        <Search size={16} style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', pointerEvents: 'none' }} />
         <input
           type="text"
           placeholder="Search brands..."
           value={search}
           onChange={e => setSearch(e.target.value)}
           className="form-input"
-          style={{ paddingLeft: '14px', borderRadius: '4px' }}
+          style={{ paddingLeft: '40px', borderRadius: '4px' }}
         />
       </div>
 

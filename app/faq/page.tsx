@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
+import { Search, Mail, HelpCircle } from 'lucide-react';
 import FaqItem from '@/components/FaqItem';
 
 type FaqCategory = 'all' | 'general' | 'configurator' | 'appointments' | 'account';
@@ -49,13 +50,14 @@ export default function FaqPage() {
 
       {/* Search */}
       <div style={{ position: 'relative', marginBottom: '28px' }}>
+        <Search size={16} style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', pointerEvents: 'none' }} />
         <input
           type="text"
           placeholder="Search questions..."
           value={search}
           onChange={e => setSearch(e.target.value)}
           className="form-input"
-          style={{ paddingLeft: '16px', fontSize: '15px', borderRadius: '4px' }}
+          style={{ paddingLeft: '44px', fontSize: '15px', borderRadius: '4px' }}
         />
       </div>
 
@@ -89,14 +91,15 @@ export default function FaqPage() {
 
       {/* CTA */}
       <div style={{ marginTop: '60px', textAlign: 'center', padding: '36px 24px', background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '4px' }}>
+        <HelpCircle size={28} style={{ color: 'var(--accent-blue)', marginBottom: '12px' }} />
         <h3 style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '20px', marginBottom: '10px' }}>Still Have Questions?</h3>
         <p style={{ color: 'var(--text-muted)', marginBottom: '24px', fontSize: '14px' }}>Our partner garages are ready to guide you. Book an appointment to discuss details in person or at home.</p>
         <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link href="/test-drive" className="btn-primary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', borderRadius: '4px' }}>
+          <Link href="/test-drive" className="btn-primary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px', borderRadius: '4px' }}>
             Book a Visit
           </Link>
-          <a href="mailto:support@garageaz.in" className="btn-ghost" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', borderRadius: '4px' }}>
-            Email Support
+          <a href="mailto:support@garageaz.in" className="btn-ghost" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px', borderRadius: '4px' }}>
+            <Mail size={16} /> Email Support
           </a>
         </div>
       </div>

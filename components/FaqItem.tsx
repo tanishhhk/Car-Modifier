@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
 
 interface FaqItemProps {
   question: string;
@@ -37,13 +38,15 @@ export default function FaqItem({ question, answer, defaultOpen = false }: FaqIt
         }}
       >
         <span style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '15px', lineHeight: '1.4' }}>{question}</span>
-        <span style={{
-          fontSize: '16px',
-          fontWeight: 700,
-          color: isOpen ? 'var(--accent-blue)' : 'var(--text-muted)',
-        }}>
-          {isOpen ? '−' : '+'}
-        </span>
+        <ChevronDown
+          size={18}
+          style={{
+            color: isOpen ? 'var(--accent-blue)' : 'var(--text-muted)',
+            transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 0.2s ease',
+            flexShrink: 0,
+          }}
+        />
       </button>
 
       {isOpen && (

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { Play, Pause } from 'lucide-react';
 
 interface Car3DViewerProps {
   carId: string;
@@ -711,7 +712,7 @@ export default function Car3DViewer({
           title={isRotating ? 'Pause auto rotation' : 'Play auto rotation'}
           style={{
             height: '40px',
-            padding: '0 14px',
+            width: '40px',
             borderRadius: '4px',
             background: 'var(--bg-card)',
             border: '1px solid var(--border)',
@@ -720,12 +721,10 @@ export default function Car3DViewer({
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
-            fontSize: '12px',
-            fontWeight: 600,
             transition: 'all 0.2s',
           }}
         >
-          {isRotating ? 'Pause' : 'Auto-Rotate'}
+          {isRotating ? <Pause size={16} /> : <Play size={16} />}
         </button>
 
         {viewMode === 'exterior' && (

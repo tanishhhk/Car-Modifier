@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { Car, User, Mail, Lock, Eye, EyeOff, Check } from 'lucide-react';
 
 function PasswordStrength({ password }: { password: string }) {
   const strength = !password ? 0 : password.length < 4 ? 1 : password.length < 6 ? 2 : /[A-Z]/.test(password) && /[0-9]/.test(password) ? 4 : 3;
@@ -42,6 +43,9 @@ export default function SignupPage() {
 
   if (success) return (
     <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '16px' }}>
+      <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(34,197,94,0.15)', border: '2px solid #22c55e', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Check size={28} style={{ color: '#22c55e' }} />
+      </div>
       <h2 style={{ fontWeight: 800, fontSize: '24px', color: 'var(--text-primary)' }}>Account Created!</h2>
       <p style={{ color: 'var(--text-muted)' }}>Redirecting you to the home page...</p>
     </div>
@@ -52,8 +56,8 @@ export default function SignupPage() {
       {/* Left panel */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '60px', background: 'var(--bg-surface)', borderRight: '1px solid var(--border)' }}>
         <div style={{ maxWidth: '340px', textAlign: 'center' }}>
-          <div style={{ width: 64, height: 64, borderRadius: '4px', background: 'var(--accent-blue)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px', fontWeight: 800, fontSize: '24px' }}>
-            AZ
+          <div style={{ width: 64, height: 64, borderRadius: '4px', background: 'var(--accent-blue)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
+            <Car size={32} color="white" />
           </div>
           <h2 style={{ fontWeight: 800, fontSize: '28px', marginBottom: '12px' }}>Join GarageAZ</h2>
           <p style={{ color: 'var(--text-muted)', fontSize: '15px', lineHeight: '1.6', marginBottom: '32px' }}>Create a free account to save your configurations and access features.</p>
@@ -61,7 +65,7 @@ export default function SignupPage() {
             <p style={{ color: 'var(--text-muted)', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '12px' }}>What you get</p>
             {['Save unlimited favorites','Persistent car configurations','Multi-device sync','Priority garage consultation'].map(feature => (
               <div key={feature} style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-                <div style={{ width: 6, height: 6, borderRadius: '1px', background: 'var(--accent-blue)', flexShrink: 0 }} />
+                <Check size={16} style={{ color: 'var(--accent-blue)', flexShrink: 0 }} />
                 <span style={{ color: 'var(--text-muted)', fontSize: '14px' }}>{feature}</span>
               </div>
             ))}
@@ -84,18 +88,25 @@ export default function SignupPage() {
           <form onSubmit={handleSignup} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
             <div>
               <label className="form-label">Full Name</label>
-              <input className="form-input" type="text" placeholder="John Doe" value={name} onChange={e => setName(e.target.value)} style={{ borderRadius: '4px' }} />
+              <div style={{ position: 'relative' }}>
+                <User size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', pointerEvents: 'none' }} />
+                <input className="form-input" type="text" placeholder="John Doe" value={name} onChange={e => setName(e.target.value)} style={{ borderRadius: '4px', paddingLeft: '38px' }} />
+              </div>
             </div>
             <div>
               <label className="form-label">Email Address</label>
-              <input className="form-input" type="email" placeholder="you@example.com" value={email} onChange={e => setEmail(e.target.value)} style={{ borderRadius: '4px' }} />
+              <div style={{ position: 'relative' }}>
+                <Mail size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', pointerEvents: 'none' }} />
+                <input className="form-input" type="email" placeholder="you@example.com" value={email} onChange={e => setEmail(e.target.value)} style={{ borderRadius: '4px', paddingLeft: '38px' }} />
+              </div>
             </div>
             <div>
               <label className="form-label">Password</label>
               <div style={{ position: 'relative' }}>
-                <input className="form-input" type={showPass ? 'text' : 'password'} placeholder="Min. 6 characters" value={password} onChange={e => setPassword(e.target.value)} style={{ borderRadius: '4px', paddingRight: '60px' }} />
-                <button type="button" onClick={() => setShowPass(!showPass)} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '12px', fontWeight: 600 }}>
-                  {showPass ? 'Hide' : 'Show'}
+                <Lock size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', pointerEvents: 'none' }} />
+                <input className="form-input" type={showPass ? 'text' : 'password'} placeholder="Min. 6 characters" value={password} onChange={e => setPassword(e.target.value)} style={{ borderRadius: '4px', paddingLeft: '38px', paddingRight: '40px' }} />
+                <button type="button" onClick={() => setShowPass(!showPass)} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                  {showPass ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
               <PasswordStrength password={password} />

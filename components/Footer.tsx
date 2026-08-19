@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { Car, Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -16,8 +17,8 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
-              <div style={{ width: 32, height: 32, borderRadius: '4px', background: 'var(--accent-blue)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '14px' }}>
-                AZ
+              <div style={{ width: 34, height: 34, borderRadius: '4px', background: 'var(--accent-blue)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Car size={20} color="white" />
               </div>
               <span style={{ fontWeight: 800, fontSize: '18px', color: 'white' }}>
                 GarageAZ
@@ -65,12 +66,12 @@ export default function Footer() {
             <h4 style={{ color: 'white', fontWeight: 700, marginBottom: '16px', fontSize: '14px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Contact</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {[
-                { label: 'Email', text: 'hello@garageaz.in' },
-                { label: 'Phone', text: '+91 98765 43210' },
-                { label: 'Location', text: 'New Delhi, India' },
-              ].map(({ label, text }) => (
-                <div key={text} style={{ display: 'flex', gap: '8px', color: 'rgba(255,255,255,0.45)', fontSize: '14px' }}>
-                  <span style={{ color: 'var(--accent-blue)', fontWeight: 600 }}>{label}:</span>
+                { icon: Mail, text: 'hello@garageaz.in' },
+                { icon: Phone, text: '+91 98765 43210' },
+                { icon: MapPin, text: 'New Delhi, India' },
+              ].map(({ icon: Icon, text }) => (
+                <div key={text} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'rgba(255,255,255,0.45)', fontSize: '14px' }}>
+                  <Icon size={16} style={{ color: 'var(--accent-blue)', flexShrink: 0 }} />
                   <span>{text}</span>
                 </div>
               ))}

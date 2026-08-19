@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Box, ArrowRight, Calendar, Palette, Disc, Layers, Wrench } from 'lucide-react';
 import { cars } from '@/lib/cars';
 
 const TYPING_TEXTS = ['Customize in 3D.', 'Configure CAD.', 'Design Interiors.', 'Schedule Garage.'];
@@ -51,14 +52,14 @@ export default function HomePage() {
         </p>
 
         <div className="fade-in-up" style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <Link href="/models" className="btn-primary" style={{ textDecoration: 'none', fontSize: '15px', padding: '12px 28px', borderRadius: '4px' }}>
-            Start Customizing
+          <Link href="/models" className="btn-primary" style={{ textDecoration: 'none', fontSize: '15px', padding: '12px 28px', borderRadius: '4px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+            <Box size={18} /> Start Customizing
           </Link>
           <Link href="/brands" className="btn-ghost" style={{ textDecoration: 'none', fontSize: '15px', padding: '12px 28px', borderRadius: '4px' }}>
             Explore Brands
           </Link>
-          <Link href="/test-drive" className="btn-ghost" style={{ textDecoration: 'none', fontSize: '15px', padding: '12px 28px', borderRadius: '4px' }}>
-            Garage Appointment
+          <Link href="/test-drive" className="btn-ghost" style={{ textDecoration: 'none', fontSize: '15px', padding: '12px 28px', borderRadius: '4px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+            <Calendar size={18} /> Garage Appointment
           </Link>
         </div>
       </section>
@@ -113,8 +114,8 @@ export default function HomePage() {
           </div>
 
           <div style={{ textAlign: 'center', marginTop: '40px' }}>
-            <Link href="/models" className="btn-ghost" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', borderRadius: '4px' }}>
-              View All Models
+            <Link href="/models" className="btn-ghost" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px', borderRadius: '4px' }}>
+              View All Models <ArrowRight size={16} />
             </Link>
           </div>
         </div>
@@ -130,12 +131,13 @@ export default function HomePage() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: '24px' }}>
             {[
-              { title: 'Paint & Finishes', desc: 'Modify body paint with gloss, matte, or metallic swatches, or input a custom hex value.' },
-              { title: 'Alloy Spokes', desc: 'Select and preview custom alloys like Chrome Spoke, Matte Black Star, Gold Mesh, or Sport Red Line.' },
-              { title: '3D CAD Blueprints', desc: 'Switch between Exterior and 360 degree Interior look around views, or toggle the wireframe schematic.' },
-              { title: 'Garage Consultations', desc: 'Schedule verified shops to perform customizations. Technicians visit your home or you visit them.' },
-            ].map(({ title, desc }) => (
+              { icon: Palette, title: 'Paint & Finishes', desc: 'Modify body paint with gloss, matte, or metallic swatches, or input a custom hex value.' },
+              { icon: Disc, title: 'Alloy Spokes', desc: 'Select and preview custom alloys like Chrome Spoke, Matte Black Star, Gold Mesh, or Sport Red Line.' },
+              { icon: Layers, title: '3D CAD Blueprints', desc: 'Switch between Exterior and 360 degree Interior look around views, or toggle the wireframe schematic.' },
+              { icon: Wrench, title: 'Garage Consultations', desc: 'Schedule verified shops to perform customizations. Technicians visit your home or you visit them.' },
+            ].map(({ icon: Icon, title, desc }) => (
               <div key={title} className="card-hover" style={{ background: 'var(--bg-primary)', border: '1px solid var(--border)', borderRadius: '4px', padding: '24px' }}>
+                <Icon size={24} style={{ color: 'var(--accent-blue)', marginBottom: '12px' }} />
                 <h3 style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '17px', marginBottom: '8px' }}>{title}</h3>
                 <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: '1.6', margin: 0 }}>{desc}</p>
               </div>
@@ -155,10 +157,10 @@ export default function HomePage() {
               Choose from our catalog, load its 3D CAD blueprint, configure it to your liking, and schedule your garage consultation.
             </p>
             <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/models" className="btn-primary" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', fontSize: '15px', padding: '12px 28px', borderRadius: '4px' }}>
-                Browse Models
+              <Link href="/models" className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none', fontSize: '15px', padding: '12px 28px', borderRadius: '4px' }}>
+                Browse Models <ArrowRight size={16} />
               </Link>
-              <Link href="/test-drive" className="btn-ghost" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', fontSize: '15px', padding: '12px 28px', borderRadius: '4px' }}>
+              <Link href="/test-drive" className="btn-ghost" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none', fontSize: '15px', padding: '12px 28px', borderRadius: '4px' }}>
                 Garage Appointment
               </Link>
             </div>

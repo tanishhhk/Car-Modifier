@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { Heart, Box, Gauge, Users } from 'lucide-react';
 import type { CarModel } from '@/lib/cars';
 
 interface CarCardProps {
@@ -47,14 +48,14 @@ export default function CarCard({ car, isFavorite, onToggleFavorite, onConfigure
             onClick={() => onToggleFavorite(car.id)}
             title={isFavorite ? 'Remove from saved' : 'Save model'}
             style={{
-              padding: '4px 8px', borderRadius: '4px',
-              background: isFavorite ? 'var(--accent-blue)' : 'rgba(0,0,0,0.6)',
+              padding: '6px', borderRadius: '4px',
+              background: isFavorite ? '#ef4444' : 'rgba(0,0,0,0.6)',
               border: '1px solid rgba(255,255,255,0.2)',
-              fontSize: '11px', fontWeight: 600,
               cursor: 'pointer', color: 'white',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}
           >
-            {isFavorite ? 'Saved' : 'Save'}
+            <Heart size={15} fill={isFavorite ? 'white' : 'none'} color="white" />
           </button>
         </div>
 
@@ -73,13 +74,19 @@ export default function CarCard({ car, isFavorite, onToggleFavorite, onConfigure
 
         {/* Quick specs */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
-          <div style={{ background: 'var(--bg-surface)', borderRadius: '4px', padding: '8px 10px', border: '1px solid var(--border)' }}>
-            <p style={{ color: 'var(--text-muted)', fontSize: '10px', fontWeight: 600, margin: '0 0 2px', textTransform: 'uppercase' }}>Mileage</p>
-            <p style={{ color: 'var(--text-primary)', fontSize: '13px', fontWeight: 600, margin: 0 }}>{car.mileage}</p>
+          <div style={{ background: 'var(--bg-surface)', borderRadius: '4px', padding: '8px 10px', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Gauge size={14} style={{ color: 'var(--accent-blue)', flexShrink: 0 }} />
+            <div>
+              <p style={{ color: 'var(--text-muted)', fontSize: '10px', fontWeight: 600, margin: 0, textTransform: 'uppercase' }}>Mileage</p>
+              <p style={{ color: 'var(--text-primary)', fontSize: '12px', fontWeight: 600, margin: 0 }}>{car.mileage}</p>
+            </div>
           </div>
-          <div style={{ background: 'var(--bg-surface)', borderRadius: '4px', padding: '8px 10px', border: '1px solid var(--border)' }}>
-            <p style={{ color: 'var(--text-muted)', fontSize: '10px', fontWeight: 600, margin: '0 0 2px', textTransform: 'uppercase' }}>Seats</p>
-            <p style={{ color: 'var(--text-primary)', fontSize: '13px', fontWeight: 600, margin: 0 }}>{car.seats} Seats</p>
+          <div style={{ background: 'var(--bg-surface)', borderRadius: '4px', padding: '8px 10px', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Users size={14} style={{ color: 'var(--accent-blue)', flexShrink: 0 }} />
+            <div>
+              <p style={{ color: 'var(--text-muted)', fontSize: '10px', fontWeight: 600, margin: 0, textTransform: 'uppercase' }}>Seats</p>
+              <p style={{ color: 'var(--text-primary)', fontSize: '12px', fontWeight: 600, margin: 0 }}>{car.seats} Seats</p>
+            </div>
           </div>
         </div>
 
@@ -88,9 +95,9 @@ export default function CarCard({ car, isFavorite, onToggleFavorite, onConfigure
         <button
           onClick={() => onConfigure3D(car)}
           className="btn-primary"
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 'auto', width: '100%', borderRadius: '4px' }}
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginTop: 'auto', width: '100%', borderRadius: '4px' }}
         >
-          Open 3D CAD
+          <Box size={16} /> Open 3D CAD
         </button>
       </div>
     </div>
