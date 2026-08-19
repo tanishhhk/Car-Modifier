@@ -90,18 +90,10 @@ export default function Navbar() {
             const active = pathname === link.href;
             return (
               <li key={link.href}>
-                <Link href={link.href} style={{
-                  color: active ? 'var(--text-primary)' : 'var(--text-muted)',
-                  textDecoration: 'none',
-                  fontSize: '14px',
-                  fontWeight: active ? 600 : 400,
-                  padding: '6px 14px',
-                  borderRadius: '4px',
-                  background: active ? 'var(--bg-surface)' : 'transparent',
-                  border: active ? '1px solid var(--border)' : '1px solid transparent',
-                  transition: 'all 0.2s ease',
-                  display: 'block',
-                }}>
+                <Link
+                  href={link.href}
+                  className={`nav-link ${active ? 'active' : ''}`}
+                >
                   {link.label}
                 </Link>
               </li>
@@ -132,11 +124,11 @@ export default function Navbar() {
           </button>
 
           {isLoggedIn ? (
-            <button onClick={handleLogout} className="btn-ghost" style={{ padding: '8px 16px', fontSize: '14px', borderRadius: '9999px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <button onClick={handleLogout} className="btn-ghost" style={{ padding: '8px 16px', fontSize: '14px', borderRadius: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>
               <LogOut size={16} /> Logout
             </button>
           ) : (
-            <Link href="/login" className="btn-primary" style={{ padding: '8px 18px', fontSize: '14px', textDecoration: 'none', borderRadius: '9999px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+            <Link href="/login" className="btn-primary" style={{ padding: '8px 18px', fontSize: '14px', textDecoration: 'none', borderRadius: '4px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
               <LogIn size={16} /> Login
             </Link>
           )}
@@ -144,8 +136,8 @@ export default function Navbar() {
           {/* Hamburger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            style={{ width: 36, height: 36, borderRadius: '50%', background: 'none', border: '1px solid var(--border)', color: 'var(--text-primary)', cursor: 'pointer', display: 'none', alignItems: 'center', justifyContent: 'center' }}
-            className="show-mobile"
+            className="icon-btn-hover show-mobile"
+            style={{ width: 36, height: 36, borderRadius: '4px', background: 'var(--bg-surface)', border: '1px solid var(--border)', color: 'var(--text-primary)', cursor: 'pointer', display: 'none', alignItems: 'center', justifyContent: 'center' }}
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
