@@ -31,7 +31,7 @@ export default function CarModal({ car, onClose, isFavorite, onToggleFavorite }:
               onClick={() => onToggleFavorite(car.id)}
               className="icon-btn-hover"
               style={{
-                width: 36, height: 36, borderRadius: '50%',
+                width: 36, height: 36, borderRadius: '4px',
                 background: isFavorite ? '#ef4444' : 'var(--bg-surface)',
                 border: '1px solid var(--border)',
                 cursor: 'pointer', color: isFavorite ? 'white' : 'var(--text-muted)',
@@ -44,7 +44,7 @@ export default function CarModal({ car, onClose, isFavorite, onToggleFavorite }:
               onClick={onClose}
               className="icon-btn-hover"
               style={{
-                width: 36, height: 36, borderRadius: '50%',
+                width: 36, height: 36, borderRadius: '4px',
                 background: 'var(--bg-surface)',
                 border: '1px solid var(--border)',
                 cursor: 'pointer', color: 'var(--text-muted)',
@@ -78,7 +78,7 @@ export default function CarModal({ car, onClose, isFavorite, onToggleFavorite }:
                 title={color}
                 className="icon-btn-hover"
                 style={{
-                  width: 30, height: 30, borderRadius: '50%',
+                  width: 30, height: 30, borderRadius: '4px',
                   background: color,
                   border: selectedColor === color ? '2px solid var(--accent-blue)' : '1px solid var(--border)',
                   cursor: 'pointer',

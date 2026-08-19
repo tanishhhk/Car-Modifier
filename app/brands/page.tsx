@@ -39,7 +39,7 @@ export default function BrandsPage() {
       <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '28px' }}>
         {segments.map(seg => (
           <button key={seg} onClick={() => setActiveSegment(seg)} style={{
-            padding: '8px 18px', borderRadius: '9999px', border: '1px solid var(--border)', cursor: 'pointer',
+            padding: '8px 16px', borderRadius: '4px', border: '1px solid var(--border)', cursor: 'pointer',
             fontWeight: 600, fontSize: '13px', textTransform: 'capitalize',
             background: activeSegment === seg ? 'var(--accent-blue)' : 'var(--bg-surface)',
             color: activeSegment === seg ? 'white' : 'var(--text-primary)',

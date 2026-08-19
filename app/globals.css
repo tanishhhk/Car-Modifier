@@ -245,7 +245,7 @@ input:focus, select:focus, textarea:focus {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   padding: 4px 10px;
-  border-radius: 9999px;
+  border-radius: 4px;
   background: var(--bg-surface);
   color: var(--text-muted);
   border: 1px solid var(--border);
@@ -295,7 +295,7 @@ input:focus, select:focus, textarea:focus {
 .step-dot {
   width: 32px;
   height: 32px;
-  border-radius: 50%;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;

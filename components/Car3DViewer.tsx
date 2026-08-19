@@ -714,7 +714,7 @@ export default function Car3DViewer({
           style={{
             height: '40px',
             width: '40px',
-            borderRadius: '50%',
+            borderRadius: '4px',
             background: 'var(--bg-card)',
             border: '1px solid var(--border)',
             color: 'var(--text-primary)',
@@ -743,7 +743,7 @@ export default function Car3DViewer({
               style={{
                 width: '40px',
                 height: '40px',
-                borderRadius: '50%',
+                borderRadius: '4px',
                 background: 'var(--bg-card)',
                 border: '1px solid var(--border)',
                 color: 'var(--text-primary)',
@@ -770,7 +770,7 @@ export default function Car3DViewer({
               style={{
                 width: '40px',
                 height: '40px',
-                borderRadius: '50%',
+                borderRadius: '4px',
                 background: 'var(--bg-card)',
                 border: '1px solid var(--border)',
                 color: 'var(--text-primary)',

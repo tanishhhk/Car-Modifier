@@ -49,7 +49,7 @@ export default function CarCard({ car, isFavorite, onToggleFavorite, onConfigure
             title={isFavorite ? 'Remove from saved' : 'Save model'}
             className="icon-btn-hover"
             style={{
-              width: '32px', height: '32px', borderRadius: '50%',
+              width: '32px', height: '32px', borderRadius: '4px',
               background: isFavorite ? '#ef4444' : 'rgba(0,0,0,0.6)',
               border: '1px solid rgba(255,255,255,0.2)',
               cursor: 'pointer', color: 'white',

@@ -42,15 +42,8 @@ export default function HomePage() {
   return (
     <div>
       {/* HERO SECTION */}
-      <section className="hero-gradient" style={{ minHeight: '85vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '100px 24px 70px', position: 'relative' }}>
+      <section className="hero-gradient" style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '90px 24px 70px', position: 'relative' }}>
         
-        {/* WebGL Badge */}
-        <div className="fade-in-up">
-          <span className="badge" style={{ padding: '6px 16px', marginBottom: '24px', display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '12px' }}>
-            <Cpu size={14} style={{ color: 'var(--accent-blue)' }} /> WEBGL 3D CAD CUSTOMIZATION SUITE
-          </span>
-        </div>
-
         <h1 className="fade-in-up" style={{ fontSize: 'clamp(38px,6vw,72px)', fontWeight: 800, lineHeight: 1.1, margin: '0 0 20px', maxWidth: '960px', letterSpacing: '-1px' }}>
           Design, Modify & Build<br />
           Your Machine with <TypingHero />
@@ -130,9 +123,9 @@ export default function HomePage() {
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: '50%',
+                    width: 44,
+                    height: 44,
+                    borderRadius: '4px',
                     background: 'var(--bg-card)',
                     border: '1px solid var(--border)',
                     display: 'flex',
@@ -147,9 +140,8 @@ export default function HomePage() {
                     color: 'var(--accent-blue)',
                     background: 'var(--bg-card)',
                     border: '1px solid var(--border)',
-                    borderRadius: '50%',
-                    width: 32,
-                    height: 32,
+                    borderRadius: '4px',
+                    padding: '4px 8px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -226,7 +218,7 @@ export default function HomePage() {
               { icon: Wrench, title: 'Garage Consultations', desc: 'Schedule verified partner shops to inspect your CAD spec and install custom parts.' },
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title} className="card-hover" style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)', borderRadius: '4px', padding: '28px' }}>
-                <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'var(--bg-card)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+                <div style={{ width: 44, height: 44, borderRadius: '4px', background: 'var(--bg-card)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
                   <Icon size={22} style={{ color: 'var(--accent-blue)' }} />
                 </div>
                 <h3 style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '18px', marginBottom: '8px' }}>{title}</h3>
@@ -246,7 +238,7 @@ export default function HomePage() {
             { icon: Cpu, title: 'Free 3D Configurator', desc: 'Zero cost WebGL customizer suite' },
           ].map(({ icon: Icon, title, desc }) => (
             <div key={title} style={{ display: 'flex', alignItems: 'center', gap: '16px', background: 'var(--bg-card)', padding: '20px', borderRadius: '4px', border: '1px solid var(--border)' }}>
-              <div style={{ width: 42, height: 42, borderRadius: '50%', background: 'var(--bg-surface)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <div style={{ width: 42, height: 42, borderRadius: '4px', background: 'var(--bg-surface)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                 <Icon size={20} style={{ color: 'var(--accent-blue)' }} />
               </div>
               <div>

@@ -65,7 +65,7 @@ export default function FaqPage() {
       <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '36px' }}>
         {CATEGORIES.map(({ id, label }) => (
           <button key={id} onClick={() => setActiveCategory(id)} style={{
-            padding: '8px 18px', borderRadius: '9999px', border: '1px solid var(--border)', cursor: 'pointer',
+            padding: '8px 16px', borderRadius: '4px', border: '1px solid var(--border)', cursor: 'pointer',
             fontWeight: 600, fontSize: '13px',
             background: activeCategory === id ? 'var(--accent-blue)' : 'var(--bg-surface)',
             color: activeCategory === id ? 'white' : 'var(--text-primary)',

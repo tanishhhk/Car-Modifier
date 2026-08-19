@@ -16,14 +16,18 @@ export default function Footer() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '40px', marginBottom: '48px' }}>
           {/* Brand */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
-              <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--accent-blue)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Car size={20} color="white" />
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', marginBottom: '16px' }}>
+              <div style={{
+                width: 32, height: 32, borderRadius: '4px',
+                background: 'var(--accent-blue)', color: 'white',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}>
+                <Car size={18} color="white" />
               </div>
               <span style={{ fontWeight: 800, fontSize: '18px', color: 'white' }}>
                 GarageAZ
               </span>
-            </div>
+            </Link>
             <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '14px', lineHeight: '1.7', maxWidth: '240px' }}>
               Explore, customize in 3D CAD, and schedule garage appointments, all in one place.
             </p>

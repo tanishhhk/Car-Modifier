@@ -72,7 +72,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
           <div style={{
-            width: 36, height: 36, borderRadius: '50%',
+            width: 36, height: 36, borderRadius: '4px',
             background: 'var(--accent-blue)', color: 'white',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
@@ -96,7 +96,7 @@ export default function Navbar() {
                   fontSize: '14px',
                   fontWeight: active ? 600 : 400,
                   padding: '6px 14px',
-                  borderRadius: '9999px',
+                  borderRadius: '4px',
                   background: active ? 'var(--bg-surface)' : 'transparent',
                   border: active ? '1px solid var(--border)' : '1px solid transparent',
                   transition: 'all 0.2s ease',
@@ -118,7 +118,7 @@ export default function Navbar() {
             style={{
               width: 36,
               height: 36,
-              borderRadius: '50%',
+              borderRadius: '4px',
               background: 'var(--bg-surface)',
               border: '1px solid var(--border)',
               color: 'var(--text-primary)',
