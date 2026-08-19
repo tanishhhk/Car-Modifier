@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Box, ArrowRight, Calendar, Palette, Disc, Layers, Wrench } from 'lucide-react';
+import { Box, ArrowRight, Calendar, Palette, Disc, Layers, Wrench, Sliders, CheckCircle2 } from 'lucide-react';
 import { cars } from '@/lib/cars';
 
 const TYPING_TEXTS = ['Customize in 3D.', 'Configure CAD.', 'Design Interiors.', 'Schedule Garage.'];
@@ -64,23 +64,72 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Feature Steps (2x2 grid format) */}
-      <section style={{ padding: '60px 24px', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', background: 'var(--bg-card)' }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: '24px' }}>
-          {[
-            { step: '01', title: 'Load CAD Model', desc: 'Choose a car, select its model variant, and load its detailed 3D CAD schematic.' },
-            { step: '02', title: 'Apply Customizations', desc: 'Modify body paint, alloy wheels, boot subwoofers, and seat trims live in 3D.' },
-            { step: '03', title: 'Garage Consult', desc: 'Schedule a session with experts. They can visit your home, or you can visit their shop.' },
-            { step: '04', title: 'Save & Drive', desc: 'Export your configuration and bring your dream build to life.' }
-          ].map(f => (
-            <div key={f.step} style={{ display: 'flex', gap: '16px', alignItems: 'flex-start', background: 'var(--bg-surface)', padding: '20px', borderRadius: '4px', border: '1px solid var(--border)' }}>
-              <span style={{ fontSize: '24px', fontWeight: 800, color: 'var(--accent-blue)' }}>{f.step}</span>
-              <div>
-                <h3 style={{ margin: '0 0 4px', fontWeight: 700, fontSize: '15px', color: 'var(--text-primary)' }}>{f.title}</h3>
-                <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '13px', lineHeight: '1.5' }}>{f.desc}</p>
+      {/* Feature Steps */}
+      <section style={{ padding: '80px 24px', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', background: 'var(--bg-card)' }}>
+        <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+            <span className="badge" style={{ marginBottom: '12px', display: 'inline-block' }}>WORKFLOW</span>
+            <h2 className="section-title">4 Steps to Your Custom Build</h2>
+            <p className="section-subtitle">From interactive 3D CAD blueprints to professional garage installation</p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px' }}>
+            {[
+              { icon: Box, step: '01', title: 'Load CAD Model', desc: 'Choose a car, select its model variant, and load its detailed 3D CAD schematic.' },
+              { icon: Sliders, step: '02', title: 'Apply Customizations', desc: 'Modify body paint, alloy wheels, boot subwoofers, and seat trims live in 3D.' },
+              { icon: Wrench, step: '03', title: 'Garage Consult', desc: 'Schedule a session with experts. They can visit your home, or you can visit their shop.' },
+              { icon: CheckCircle2, step: '04', title: 'Save & Drive', desc: 'Export your configuration and bring your dream build to life.' }
+            ].map(({ icon: Icon, step, title, desc }) => (
+              <div
+                key={step}
+                className="card-hover"
+                style={{
+                  background: 'var(--bg-surface)',
+                  padding: '28px 24px',
+                  borderRadius: '4px',
+                  border: '1px solid var(--border)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '16px',
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div style={{
+                    width: 48,
+                    height: 48,
+                    borderRadius: '50%',
+                    background: 'var(--bg-card)',
+                    border: '1px solid var(--border)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}>
+                    <Icon size={22} style={{ color: 'var(--accent-blue)' }} />
+                  </div>
+                  <span style={{
+                    fontSize: '12px',
+                    fontWeight: 800,
+                    color: 'var(--accent-blue)',
+                    background: 'var(--bg-card)',
+                    border: '1px solid var(--border)',
+                    borderRadius: '50%',
+                    width: 32,
+                    height: 32,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}>
+                    {step}
+                  </span>
+                </div>
+
+                <div>
+                  <h3 style={{ margin: '0 0 8px', fontWeight: 700, fontSize: '17px', color: 'var(--text-primary)' }}>{title}</h3>
+                  <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '14px', lineHeight: '1.6' }}>{desc}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
