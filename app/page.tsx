@@ -44,9 +44,10 @@ export default function HomePage() {
       {/* HERO SECTION */}
       <section className="hero-gradient" style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '90px 24px 70px', position: 'relative' }}>
         
-        <h1 className="fade-in-up" style={{ fontSize: 'clamp(38px,6vw,72px)', fontWeight: 800, lineHeight: 1.1, margin: '0 0 20px', maxWidth: '960px', letterSpacing: '-1px' }}>
+        <h1 className="fade-in-up" style={{ fontSize: 'clamp(38px,6vw,72px)', fontWeight: 800, lineHeight: 1.15, margin: '0 0 20px', maxWidth: '960px', letterSpacing: '-1px' }}>
           Design, Modify & Build<br />
-          Your Machine with <TypingHero />
+          Your Machine<br />
+          <TypingHero />
         </h1>
 
         <p className="fade-in-up" style={{ color: 'var(--text-muted)', fontSize: 'clamp(16px,2vw,19px)', maxWidth: '760px', lineHeight: 1.7, margin: '0 auto 40px' }}>
