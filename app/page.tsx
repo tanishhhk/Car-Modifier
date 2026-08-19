@@ -3,10 +3,10 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Box, ArrowRight, Calendar, Palette, Disc, Layers, Wrench, Sliders, CheckCircle2 } from 'lucide-react';
+import { Box, ArrowRight, Calendar, Palette, Disc, Layers, Wrench, Sliders, CheckCircle2, Sparkles, Compass, Music, ShieldCheck, Cpu } from 'lucide-react';
 import { cars } from '@/lib/cars';
 
-const TYPING_TEXTS = ['Customize in 3D.', 'Configure CAD.', 'Design Interiors.', 'Schedule Garage.'];
+const TYPING_TEXTS = ['3D CAD Blueprints.', 'Alloy Wheel Styles.', 'Trunk Audio Tuning.', 'Garage Appointments.'];
 
 function TypingHero() {
   const [textIndex, setTextIndex] = useState(0);
@@ -37,34 +37,69 @@ const featuredIds = ['ferrari-sf90', 'rolls-royce', 'toyota-supra', 'audi-q7'];
 
 export default function HomePage() {
   const featured = cars.filter(c => featuredIds.includes(c.id));
+  const [activeTab, setActiveTab] = useState<'cad' | 'interior' | 'paint' | 'garage'>('cad');
 
   return (
     <div>
-      {/* Hero */}
-      <section className="hero-gradient" style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '80px 24px 60px', position: 'relative' }}>
-        <h1 className="fade-in-up" style={{ fontSize: 'clamp(36px,6vw,72px)', fontWeight: 800, lineHeight: 1.1, margin: '0 0 16px', maxWidth: '900px', letterSpacing: '-1px' }}>
-          The Future of Car<br />
-          <TypingHero />
+      {/* HERO SECTION */}
+      <section className="hero-gradient" style={{ minHeight: '85vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '100px 24px 70px', position: 'relative' }}>
+        
+        {/* WebGL Badge */}
+        <div className="fade-in-up">
+          <span className="badge" style={{ padding: '6px 16px', marginBottom: '24px', display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '12px' }}>
+            <Sparkles size={14} style={{ color: 'var(--accent-blue)' }} /> WEBGL 3D CAD CUSTOMIZATION SUITE
+          </span>
+        </div>
+
+        <h1 className="fade-in-up" style={{ fontSize: 'clamp(38px,6vw,72px)', fontWeight: 800, lineHeight: 1.1, margin: '0 0 20px', maxWidth: '960px', letterSpacing: '-1px' }}>
+          Design, Modify & Build<br />
+          Your Machine with <TypingHero />
         </h1>
 
-        <p className="fade-in-up" style={{ color: 'var(--text-muted)', fontSize: 'clamp(16px,2vw,18px)', maxWidth: '720px', lineHeight: 1.7, margin: '0 auto 40px' }}>
-          Explore premium models, load high fidelity 3D CAD schematics, apply real world customizations, and schedule a garage consultation at your convenience.
+        <p className="fade-in-up" style={{ color: 'var(--text-muted)', fontSize: 'clamp(16px,2vw,19px)', maxWidth: '760px', lineHeight: 1.7, margin: '0 auto 40px' }}>
+          Explore luxury & sport models, load interactive 3D CAD blueprints, preview custom paint & alloy fitments live, and schedule an appointment with verified garages.
         </p>
 
-        <div className="fade-in-up" style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <Link href="/models" className="btn-primary" style={{ textDecoration: 'none', fontSize: '15px', padding: '12px 28px', borderRadius: '4px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-            <Box size={18} /> Start Customizing
+        <div className="fade-in-up" style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '60px' }}>
+          <Link href="/models" className="btn-primary" style={{ textDecoration: 'none', fontSize: '15px', padding: '14px 32px', borderRadius: '4px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+            <Box size={18} /> Start Customizing in 3D
           </Link>
-          <Link href="/brands" className="btn-ghost" style={{ textDecoration: 'none', fontSize: '15px', padding: '12px 28px', borderRadius: '4px' }}>
+          <Link href="/brands" className="btn-ghost" style={{ textDecoration: 'none', fontSize: '15px', padding: '14px 28px', borderRadius: '4px' }}>
             Explore Brands
           </Link>
-          <Link href="/test-drive" className="btn-ghost" style={{ textDecoration: 'none', fontSize: '15px', padding: '12px 28px', borderRadius: '4px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-            <Calendar size={18} /> Garage Appointment
+          <Link href="/test-drive" className="btn-ghost" style={{ textDecoration: 'none', fontSize: '15px', padding: '14px 28px', borderRadius: '4px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+            <Calendar size={18} /> Garage Consult
           </Link>
+        </div>
+
+        {/* Hero Stats Bar */}
+        <div className="fade-in-up" style={{ width: '100%', maxWidth: '1000px', margin: '0 auto' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+            gap: '16px',
+            background: 'var(--bg-card)',
+            border: '1px solid var(--border)',
+            borderRadius: '4px',
+            padding: '24px',
+          }}>
+            {[
+              { stat: '16+', label: 'Car Models', sub: 'Sedans, SUVs & Supercars' },
+              { stat: '360°', label: '3D CAD & Interior', sub: 'Real-time WebGL view' },
+              { stat: '4+', label: 'Alloy & Paint Styles', sub: 'Custom hex finishes' },
+              { stat: '50+', label: 'Verified Garages', sub: 'Home & shop visits' },
+            ].map((item, i) => (
+              <div key={i} style={{ textAlign: 'left', padding: '8px 12px', borderRight: i < 3 ? '1px solid var(--border)' : 'none' }}>
+                <p style={{ fontSize: '28px', fontWeight: 800, color: 'var(--accent-blue)', margin: '0 0 2px' }}>{item.stat}</p>
+                <p style={{ fontSize: '14px', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 2px' }}>{item.label}</p>
+                <p style={{ fontSize: '12px', color: 'var(--text-muted)', margin: 0 }}>{item.sub}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Feature Steps */}
+      {/* WORKFLOW STEPS */}
       <section style={{ padding: '80px 24px', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', background: 'var(--bg-card)' }}>
         <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
@@ -133,28 +168,31 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Cars */}
-      <section style={{ padding: '80px 24px' }}>
+      {/* FEATURED CARS */}
+      <section style={{ padding: '90px 24px' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '52px' }}>
             <span className="badge" style={{ marginBottom: '12px', display: 'inline-block' }}>FEATURED MODELS</span>
             <h2 className="section-title">Select Model to Customize</h2>
             <p className="section-subtitle">Click any model below to open its dedicated 3D CAD customizer panel</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))', gap: '24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(270px,1fr))', gap: '24px' }}>
             {featured.map((car) => (
               <Link key={car.id} href="/models" style={{ textDecoration: 'none' }}>
-                <div className="card-hover" style={{ background: 'var(--bg-card)', borderRadius: '4px', overflow: 'hidden', border: '1px solid var(--border)' }}>
-                  <div style={{ position: 'relative', paddingTop: '62%', background: '#0f172a' }}>
+                <div className="card-hover" style={{ background: 'var(--bg-card)', borderRadius: '4px', overflow: 'hidden', border: '1px solid var(--border)', display: 'flex', flexDirection: 'column', height: '100%' }}>
+                  <div style={{ position: 'relative', paddingTop: '60%', background: '#0f172a', overflow: 'hidden' }}>
                     <Image src={car.img} alt={car.name} fill style={{ objectFit: 'cover' }} sizes="350px" />
-                    <div style={{ position: 'absolute', bottom: '14px', left: '14px', right: '14px' }}>
-                      <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '11px', margin: '0 0 4px', textTransform: 'uppercase', fontWeight: 600 }}>{car.brand}</p>
-                      <h3 style={{ color: 'white', fontWeight: 700, fontSize: '18px', margin: '0 0 6px' }}>{car.name}</h3>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ color: 'white', fontWeight: 600, fontSize: '15px' }}>{car.price}</span>
-                        <span className="badge">{car.category}</span>
-                      </div>
+                    <div style={{ position: 'absolute', top: '12px', left: '12px' }}>
+                      <span className="badge">{car.category}</span>
+                    </div>
+                  </div>
+                  <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '10px', flex: 1 }}>
+                    <p style={{ color: 'var(--text-muted)', fontSize: '11px', margin: 0, textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.06em' }}>{car.brand}</p>
+                    <h3 style={{ color: 'var(--text-primary)', fontWeight: 800, fontSize: '19px', margin: 0 }}>{car.name}</h3>
+                    <p style={{ color: 'var(--accent-blue)', fontWeight: 800, fontSize: '17px', margin: 0 }}>{car.price}</p>
+                    <div className="btn-primary" style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '10px', fontSize: '13px', borderRadius: '4px' }}>
+                      <Box size={16} /> Open 3D CAD
                     </div>
                   </div>
                 </div>
@@ -162,32 +200,36 @@ export default function HomePage() {
             ))}
           </div>
 
-          <div style={{ textAlign: 'center', marginTop: '40px' }}>
-            <Link href="/models" className="btn-ghost" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px', borderRadius: '4px' }}>
-              View All Models <ArrowRight size={16} />
+          <div style={{ textAlign: 'center', marginTop: '44px' }}>
+            <Link href="/models" className="btn-ghost" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px', borderRadius: '4px', padding: '12px 28px' }}>
+              View All 16+ Models <ArrowRight size={16} />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Why Us */}
-      <section style={{ padding: '80px 24px', background: 'var(--bg-card)', borderTop: '1px solid var(--border)' }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+      {/* CAPABILITIES / SUITE */}
+      <section style={{ padding: '90px 24px', background: 'var(--bg-card)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
+        <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '52px' }}>
             <span className="badge" style={{ marginBottom: '12px', display: 'inline-block' }}>CAPABILITIES</span>
             <h2 className="section-title">Built for Car Enthusiasts</h2>
-            <p className="section-subtitle">An interactive customization suite</p>
+            <p className="section-subtitle">An interactive WebGL 3D customization suite designed for precision</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: '24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: '24px' }}>
             {[
+              { icon: Cpu, title: '3D CAD Blueprints', desc: 'Switch between shaded rendering and CAD structural schematics in real-time WebGL.' },
               { icon: Palette, title: 'Paint & Finishes', desc: 'Modify body paint with gloss, matte, or metallic swatches, or input a custom hex value.' },
               { icon: Disc, title: 'Alloy Spokes', desc: 'Select and preview custom alloys like Chrome Spoke, Matte Black Star, Gold Mesh, or Sport Red Line.' },
-              { icon: Layers, title: '3D CAD Blueprints', desc: 'Switch between Exterior and 360 degree Interior look around views, or toggle the wireframe schematic.' },
-              { icon: Wrench, title: 'Garage Consultations', desc: 'Schedule verified shops to perform customizations. Technicians visit your home or you visit them.' },
+              { icon: Music, title: 'Subwoofer Sound', desc: 'Fit JBL, Sony, or Bass King trunk woofers with live open-trunk visualizer preview.' },
+              { icon: Compass, title: '360° Interior Cabin', desc: 'Switch to interior lookaround view to inspect steering wheel, dashboard, and seat trims.' },
+              { icon: Wrench, title: 'Garage Consultations', desc: 'Schedule verified partner shops to inspect your CAD spec and install custom parts.' },
             ].map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="card-hover" style={{ background: 'var(--bg-primary)', border: '1px solid var(--border)', borderRadius: '4px', padding: '24px' }}>
-                <Icon size={24} style={{ color: 'var(--accent-blue)', marginBottom: '12px' }} />
-                <h3 style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '17px', marginBottom: '8px' }}>{title}</h3>
+              <div key={title} className="card-hover" style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)', borderRadius: '4px', padding: '28px' }}>
+                <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'var(--bg-card)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+                  <Icon size={22} style={{ color: 'var(--accent-blue)' }} />
+                </div>
+                <h3 style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '18px', marginBottom: '8px' }}>{title}</h3>
                 <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: '1.6', margin: 0 }}>{desc}</p>
               </div>
             ))}
@@ -195,22 +237,44 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA Banner */}
-      <section style={{ padding: '80px 24px' }}>
-        <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
-          <div style={{ borderRadius: '4px', padding: '48px 32px', background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
-            <h2 style={{ fontSize: 'clamp(24px,4vw,36px)', fontWeight: 800, margin: '0 0 16px', color: 'var(--text-primary)' }}>
-              Ready to Customize in 3D?
+      {/* TRUST / GUARANTEE BAR */}
+      <section style={{ padding: '60px 24px', borderBottom: '1px solid var(--border)' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '24px' }}>
+          {[
+            { icon: ShieldCheck, title: '100% Fitment Accuracy', desc: 'Verified 3D CAD schematic dimensions' },
+            { icon: Wrench, title: 'Partner Garages', desc: 'Verified technicians for home & shop visits' },
+            { icon: Sparkles, title: 'Free 3D Configurator', desc: 'Zero cost WebGL customizer suite' },
+          ].map(({ icon: Icon, title, desc }) => (
+            <div key={title} style={{ display: 'flex', alignItems: 'center', gap: '16px', background: 'var(--bg-card)', padding: '20px', borderRadius: '4px', border: '1px solid var(--border)' }}>
+              <div style={{ width: 42, height: 42, borderRadius: '50%', background: 'var(--bg-surface)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <Icon size={20} style={{ color: 'var(--accent-blue)' }} />
+              </div>
+              <div>
+                <h4 style={{ margin: '0 0 2px', fontWeight: 700, fontSize: '15px', color: 'var(--text-primary)' }}>{title}</h4>
+                <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '12px' }}>{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA BANNER */}
+      <section style={{ padding: '90px 24px' }}>
+        <div style={{ maxWidth: '960px', margin: '0 auto', textAlign: 'center' }}>
+          <div style={{ borderRadius: '4px', padding: '56px 36px', background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
+            <span className="badge" style={{ marginBottom: '16px', display: 'inline-block' }}>GET STARTED</span>
+            <h2 style={{ fontSize: 'clamp(26px,4vw,40px)', fontWeight: 800, margin: '0 0 16px', color: 'var(--text-primary)' }}>
+              Ready to Customize Your Build in 3D?
             </h2>
-            <p style={{ color: 'var(--text-muted)', fontSize: '16px', lineHeight: '1.6', marginBottom: '32px', maxWidth: '600px', margin: '0 auto 32px' }}>
-              Choose from our catalog, load its 3D CAD blueprint, configure it to your liking, and schedule your garage consultation.
+            <p style={{ color: 'var(--text-muted)', fontSize: '16px', lineHeight: '1.7', marginBottom: '36px', maxWidth: '640px', margin: '0 auto 36px' }}>
+              Select a model from our catalog, load its 3D CAD blueprint, configure paint & alloy fitments, and schedule your garage consultation today.
             </p>
             <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/models" className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none', fontSize: '15px', padding: '12px 28px', borderRadius: '4px' }}>
+              <Link href="/models" className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none', fontSize: '15px', padding: '14px 32px', borderRadius: '4px' }}>
                 Browse Models <ArrowRight size={16} />
               </Link>
-              <Link href="/test-drive" className="btn-ghost" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none', fontSize: '15px', padding: '12px 28px', borderRadius: '4px' }}>
-                Garage Appointment
+              <Link href="/test-drive" className="btn-ghost" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none', fontSize: '15px', padding: '14px 32px', borderRadius: '4px' }}>
+                <Calendar size={16} /> Schedule Garage Appointment
               </Link>
             </div>
           </div>
