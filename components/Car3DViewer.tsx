@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { Play, Pause, RefreshCw, ZoomIn, ZoomOut, ToggleLeft, ToggleRight } from 'lucide-react';
 
 interface Car3DViewerProps {
   carId: string;
@@ -750,16 +749,16 @@ export default function Car3DViewer({
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                transition: 'all 0.2s',
+                fontSize: '18px',
+                fontWeight: 700,
               }}
             >
-              <ZoomIn size={17} />
+              +
             </button>
             <div style={{ width: '1px', background: 'var(--border)' }} />
             <button
               onClick={() => {
                 if (cameraRef.current) {
-                  // Zoom out
                   const zoomFactor = 1.25;
                   const cam = cameraRef.current;
                   cam.position.multiplyScalar(zoomFactor);
@@ -776,10 +775,11 @@ export default function Car3DViewer({
                 alignItems: 'center',
                 justifyContent: 'center',
                 cursor: 'pointer',
-                transition: 'all 0.2s',
+                fontSize: '18px',
+                fontWeight: 700,
               }}
             >
-              <ZoomOut size={17} />
+              -
             </button>
           </div>
         )}
@@ -792,7 +792,7 @@ export default function Car3DViewer({
           right: '20px',
           background: 'var(--bg-card)',
           border: '1px solid var(--border)',
-          borderRadius: '12px',
+          borderRadius: '4px',
           padding: '6px 12px',
           fontSize: '11px',
           fontWeight: 700,
@@ -800,7 +800,6 @@ export default function Car3DViewer({
           textTransform: 'uppercase',
           letterSpacing: '0.08em',
           pointerEvents: 'none',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
         }}
       >
         {viewMode} view {cadMode ? '• CAD active' : ''}

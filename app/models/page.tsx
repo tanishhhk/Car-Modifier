@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useMemo, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { Search, LayoutGrid, LayoutList, X, ArrowLeft, ArrowRight, Box, Compass, Hammer, Disc, Music, Layers } from 'lucide-react';
 import Link from 'next/link';
 import { cars } from '@/lib/cars';
 import type { CarModel } from '@/lib/cars';
@@ -150,16 +149,16 @@ function ModelsContent() {
                 padding: 0,
               }}
             >
-              <ArrowLeft size={16} /> Back to Catalog
+              ← Back to Catalog
             </button>
-            <h1 style={{ fontSize: 'clamp(22px, 3.5vw, 32px)', fontWeight: 900, margin: 0, color: 'var(--text-primary)' }}>
+            <h1 style={{ fontSize: 'clamp(22px, 3.5vw, 32px)', fontWeight: 800, margin: 0, color: 'var(--text-primary)' }}>
               Configure {selectedCar.brand} {selectedCar.name}
             </h1>
             <p style={{ color: 'var(--text-muted)', fontSize: '14px', margin: '4px 0 0' }}>
               Active Variant: <strong style={{ color: 'var(--accent-blue)' }}>{selectedVariant}</strong>
             </p>
           </div>
-          <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '12px', padding: '12px 18px', textAlign: 'right' }}>
+          <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '4px', padding: '12px 18px', textAlign: 'right' }}>
             <p style={{ color: 'var(--text-muted)', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', margin: '0 0 2px' }}>Total Est. Price</p>
             <p style={{ color: 'var(--accent-blue)', fontWeight: 800, fontSize: '20px', margin: 0 }}>{selectedCar.price}</p>
           </div>
@@ -186,32 +185,32 @@ function ModelsContent() {
             </div>
 
             {/* Visualizer Toolbar */}
-            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '16px', padding: '14px' }}>
+            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '4px', padding: '12px' }}>
               {/* Perspective Mode */}
-              <div style={{ display: 'flex', gap: '4px', background: 'var(--bg-glass-light)', padding: '4px', borderRadius: '10px', border: '1px solid var(--border)' }}>
+              <div style={{ display: 'flex', gap: '4px', background: 'var(--bg-surface)', padding: '4px', borderRadius: '4px', border: '1px solid var(--border)' }}>
                 <button
                   onClick={() => setViewMode('exterior')}
                   style={{
-                    padding: '8px 14px', borderRadius: '8px', border: 'none', cursor: 'pointer',
-                    fontSize: '13px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px',
-                    background: viewMode === 'exterior' ? 'linear-gradient(135deg,#3b82f6,#8b5cf6)' : 'transparent',
+                    padding: '8px 14px', borderRadius: '4px', border: 'none', cursor: 'pointer',
+                    fontSize: '13px', fontWeight: 600,
+                    background: viewMode === 'exterior' ? 'var(--accent-blue)' : 'transparent',
                     color: viewMode === 'exterior' ? 'white' : 'var(--text-muted)',
                     transition: 'all 0.2s',
                   }}
                 >
-                  <Compass size={15} /> Exterior
+                  Exterior
                 </button>
                 <button
                   onClick={() => setViewMode('interior')}
                   style={{
-                    padding: '8px 14px', borderRadius: '8px', border: 'none', cursor: 'pointer',
-                    fontSize: '13px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px',
-                    background: viewMode === 'interior' ? 'linear-gradient(135deg,#3b82f6,#8b5cf6)' : 'transparent',
+                    padding: '8px 14px', borderRadius: '4px', border: 'none', cursor: 'pointer',
+                    fontSize: '13px', fontWeight: 600,
+                    background: viewMode === 'interior' ? 'var(--accent-blue)' : 'transparent',
                     color: viewMode === 'interior' ? 'white' : 'var(--text-muted)',
                     transition: 'all 0.2s',
                   }}
                 >
-                  <Compass size={15} /> Interior (360°)
+                  Interior (360°)
                 </button>
               </div>
 
@@ -222,15 +221,14 @@ function ModelsContent() {
                 <button
                   onClick={() => setTrunkOpen(!trunkOpen)}
                   style={{
-                    padding: '8px 16px', borderRadius: '10px', cursor: 'pointer',
-                    fontSize: '13px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px',
-                    background: trunkOpen ? 'rgba(59,130,246,0.15)' : 'rgba(255,255,255,0.05)',
+                    padding: '8px 16px', borderRadius: '4px', cursor: 'pointer',
+                    fontSize: '13px', fontWeight: 600,
+                    background: trunkOpen ? 'var(--bg-surface)' : 'var(--bg-card)',
                     color: trunkOpen ? 'var(--accent-blue)' : 'var(--text-muted)',
-                    border: trunkOpen ? '1px solid rgba(59,130,246,0.3)' : '1px solid var(--border)',
-                    transition: 'all 0.2s',
+                    border: '1px solid var(--border)',
                   }}
                 >
-                  <Layers size={15} /> {trunkOpen ? 'Close Trunk' : 'Open Trunk'}
+                  {trunkOpen ? 'Close Trunk' : 'Open Trunk'}
                 </button>
               )}
 
@@ -238,15 +236,14 @@ function ModelsContent() {
               <button
                 onClick={() => setCadMode(!cadMode)}
                 style={{
-                  padding: '8px 16px', borderRadius: '10px', cursor: 'pointer',
-                  fontSize: '13px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px',
-                  background: cadMode ? 'rgba(16,185,129,0.15)' : 'rgba(255,255,255,0.05)',
-                  color: cadMode ? '#10b981' : 'var(--text-muted)',
-                  border: cadMode ? '1px solid rgba(16,185,129,0.4)' : '1px solid var(--border)',
-                  transition: 'all 0.2s',
+                  padding: '8px 16px', borderRadius: '4px', cursor: 'pointer',
+                  fontSize: '13px', fontWeight: 600,
+                  background: cadMode ? 'var(--bg-surface)' : 'var(--bg-card)',
+                  color: cadMode ? '#16a34a' : 'var(--text-muted)',
+                  border: '1px solid var(--border)',
                 }}
               >
-                <Layers size={15} /> {cadMode ? 'CAD Wireframe ON' : 'Show CAD Model'}
+                {cadMode ? 'CAD Wireframe ON' : 'Show CAD Model'}
               </button>
             </div>
           </div>
@@ -254,12 +251,12 @@ function ModelsContent() {
           {/* RIGHT COLUMN: Customization Controls */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             {/* Control Panel Card */}
-            <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '20px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '4px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
               
               {/* Paint Selection */}
               <div>
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '15px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', margin: '0 0 14px' }}>
-                  <Hammer size={16} style={{ color: 'var(--accent-blue)' }} /> Paint Finish
+                <h3 style={{ fontSize: '14px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', margin: '0 0 12px' }}>
+                  Paint Finish
                 </h3>
                 <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
                   {selectedCar.colors.map(color => (
@@ -268,15 +265,12 @@ function ModelsContent() {
                       onClick={() => setPaintColor(color)}
                       title={color}
                       style={{
-                        width: '36px',
-                        height: '36px',
-                        borderRadius: '50%',
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '4px',
                         background: color,
-                        border: paintColor === color ? '3px solid var(--accent-blue)' : '3px solid rgba(255,255,255,0.1)',
+                        border: paintColor === color ? '2px solid var(--accent-blue)' : '1px solid var(--border)',
                         cursor: 'pointer',
-                        transition: 'all 0.2s',
-                        boxShadow: paintColor === color ? '0 0 10px var(--glow-blue)' : 'none',
-                        transform: paintColor === color ? 'scale(1.1)' : 'scale(1)',
                       }}
                     />
                   ))}
@@ -288,10 +282,10 @@ function ModelsContent() {
                       value={paintColor}
                       onChange={e => setPaintColor(e.target.value)}
                       style={{
-                        width: '34px',
-                        height: '34px',
+                        width: '32px',
+                        height: '32px',
                         border: 'none',
-                        borderRadius: '6px',
+                        borderRadius: '4px',
                         cursor: 'pointer',
                         padding: 0,
                         background: 'transparent',
@@ -304,8 +298,8 @@ function ModelsContent() {
 
               {/* Alloys Selection */}
               <div>
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '15px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', margin: '0 0 14px' }}>
-                  <Disc size={16} style={{ color: 'var(--accent-blue)' }} /> Alloy Wheels
+                <h3 style={{ fontSize: '14px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', margin: '0 0 12px' }}>
+                  Alloy Wheels
                 </h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {(['spoke', 'star', 'mesh', 'redline'] as const).map(style => (
@@ -314,22 +308,21 @@ function ModelsContent() {
                       onClick={() => setAlloyStyle(style)}
                       style={{
                         padding: '12px 16px',
-                        borderRadius: '12px',
-                        border: alloyStyle === style ? '1px solid rgba(59,130,246,0.5)' : '1px solid var(--border)',
-                        background: alloyStyle === style ? 'var(--bg-surface)' : 'rgba(255,255,255,0.02)',
+                        borderRadius: '4px',
+                        border: alloyStyle === style ? '1px solid var(--accent-blue)' : '1px solid var(--border)',
+                        background: alloyStyle === style ? 'var(--bg-surface)' : 'var(--bg-primary)',
                         color: alloyStyle === style ? 'var(--accent-blue)' : 'var(--text-primary)',
                         textAlign: 'left',
                         fontWeight: 600,
                         fontSize: '13px',
                         cursor: 'pointer',
-                        transition: 'all 0.2s',
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center',
                       }}
                     >
                       {alloyLabels[style]}
-                      {alloyStyle === style && <span style={{ fontSize: '11px', background: 'rgba(59,130,246,0.2)', padding: '2px 8px', borderRadius: '999px' }}>Selected</span>}
+                      {alloyStyle === style && <span style={{ fontSize: '11px', background: 'var(--bg-card)', padding: '2px 8px', borderRadius: '2px', border: '1px solid var(--border)' }}>Selected</span>}
                     </button>
                   ))}
                 </div>
@@ -337,8 +330,8 @@ function ModelsContent() {
 
               {/* Woofers Selection */}
               <div>
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '15px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', margin: '0 0 14px' }}>
-                  <Music size={16} style={{ color: 'var(--accent-blue)' }} /> Subwoofer Sound System
+                <h3 style={{ fontSize: '14px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', margin: '0 0 12px' }}>
+                  Subwoofer Sound System
                 </h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {(['none', 'bassking', 'jbl', 'sony'] as const).map(style => (
@@ -347,29 +340,28 @@ function ModelsContent() {
                       onClick={() => {
                         setWooferStyle(style);
                         if (style !== 'none') {
-                          setTrunkOpen(true); // Open trunk to show woofer!
+                          setTrunkOpen(true);
                         } else {
                           setTrunkOpen(false);
                         }
                       }}
                       style={{
                         padding: '12px 16px',
-                        borderRadius: '12px',
-                        border: wooferStyle === style ? '1px solid rgba(59,130,246,0.5)' : '1px solid var(--border)',
-                        background: wooferStyle === style ? 'var(--bg-surface)' : 'rgba(255,255,255,0.02)',
+                        borderRadius: '4px',
+                        border: wooferStyle === style ? '1px solid var(--accent-blue)' : '1px solid var(--border)',
+                        background: wooferStyle === style ? 'var(--bg-surface)' : 'var(--bg-primary)',
                         color: wooferStyle === style ? 'var(--accent-blue)' : 'var(--text-primary)',
                         textAlign: 'left',
                         fontWeight: 600,
                         fontSize: '13px',
                         cursor: 'pointer',
-                        transition: 'all 0.2s',
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center',
                       }}
                     >
                       {wooferLabels[style]}
-                      {wooferStyle === style && <span style={{ fontSize: '11px', background: 'rgba(59,130,246,0.2)', padding: '2px 8px', borderRadius: '999px' }}>Selected</span>}
+                      {wooferStyle === style && <span style={{ fontSize: '11px', background: 'var(--bg-card)', padding: '2px 8px', borderRadius: '2px', border: '1px solid var(--border)' }}>Selected</span>}
                     </button>
                   ))}
                 </div>
@@ -377,8 +369,8 @@ function ModelsContent() {
 
               {/* Interiors Selection */}
               <div>
-                <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '15px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', margin: '0 0 14px' }}>
-                  <Layers size={16} style={{ color: 'var(--accent-blue)' }} /> Cabin Seats & Trim
+                <h3 style={{ fontSize: '14px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', margin: '0 0 12px' }}>
+                  Cabin Seats & Trim
                 </h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {(['#d97706', '#ef4444', '#fef08a', '#09090b'] as const).map(style => (
@@ -387,25 +379,24 @@ function ModelsContent() {
                       onClick={() => setInteriorColor(style)}
                       style={{
                         padding: '12px 16px',
-                        borderRadius: '12px',
-                        border: interiorColor === style ? '1px solid rgba(59,130,246,0.5)' : '1px solid var(--border)',
-                        background: interiorColor === style ? 'var(--bg-surface)' : 'rgba(255,255,255,0.02)',
+                        borderRadius: '4px',
+                        border: interiorColor === style ? '1px solid var(--accent-blue)' : '1px solid var(--border)',
+                        background: interiorColor === style ? 'var(--bg-surface)' : 'var(--bg-primary)',
                         color: interiorColor === style ? 'var(--accent-blue)' : 'var(--text-primary)',
                         textAlign: 'left',
                         fontWeight: 600,
                         fontSize: '13px',
                         cursor: 'pointer',
-                        transition: 'all 0.2s',
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center',
                       }}
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: style }} />
+                        <span style={{ width: '12px', height: '12px', borderRadius: '2px', background: style, border: '1px solid var(--border)' }} />
                         {interiorLabels[style]}
                       </div>
-                      {interiorColor === style && <span style={{ fontSize: '11px', background: 'rgba(59,130,246,0.2)', padding: '2px 8px', borderRadius: '999px' }}>Selected</span>}
+                      {interiorColor === style && <span style={{ fontSize: '11px', background: 'var(--bg-card)', padding: '2px 8px', borderRadius: '2px', border: '1px solid var(--border)' }}>Selected</span>}
                     </button>
                   ))}
                 </div>
@@ -426,9 +417,8 @@ function ModelsContent() {
             marginTop: '32px',
             background: 'var(--bg-card)',
             border: '1px solid var(--border)',
-            borderRadius: '20px',
+            borderRadius: '4px',
             padding: '16px 24px',
-            boxShadow: '0 10px 40px rgba(0,0,0,0.15)',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -444,7 +434,7 @@ function ModelsContent() {
           </div>
 
           <div style={{ display: 'flex', gap: '12px' }}>
-            <button onClick={handleBackToCatalog} className="btn-ghost" style={{ padding: '10px 20px', fontSize: '14px' }}>
+            <button onClick={handleBackToCatalog} className="btn-ghost" style={{ padding: '10px 20px', fontSize: '14px', borderRadius: '4px' }}>
               Back to Catalog
             </button>
             <button
@@ -455,12 +445,10 @@ function ModelsContent() {
                 fontSize: '14px',
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '8px',
-                position: 'relative',
-                zIndex: 1,
+                borderRadius: '4px',
               }}
             >
-              Schedule Garage Appointment <ArrowRight size={16} />
+              Schedule Garage Appointment
             </button>
           </div>
         </div>
@@ -480,10 +468,10 @@ function ModelsContent() {
   return (
     <div style={{ padding: '60px 24px 120px', maxWidth: '1280px', margin: '0 auto' }}>
       {/* Header */}
-      <div style={{ textAlign: 'center', marginBottom: '52px' }}>
+      <div style={{ textAlign: 'center', marginBottom: '48px' }}>
         {brandParam && (
           <div style={{ marginBottom: '12px' }}>
-            <span className="badge badge-blue">Showing: {brandParam}</span>
+            <span className="badge">Showing: {brandParam}</span>
             <Link href="/models" style={{ color: 'var(--text-muted)', fontSize: '13px', marginLeft: '10px', textDecoration: 'none' }}>Clear filter ✕</Link>
           </div>
         )}
@@ -495,18 +483,17 @@ function ModelsContent() {
       <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center', marginBottom: '32px' }}>
         {/* Search */}
         <div style={{ flex: '1 1 260px', position: 'relative', minWidth: '200px' }}>
-          <Search size={16} style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', pointerEvents: 'none' }} />
-          <input type="text" placeholder="Search models..." value={search} onChange={e => setSearch(e.target.value)} className="form-input" style={{ paddingLeft: '42px' }} />
+          <input type="text" placeholder="Search models..." value={search} onChange={e => setSearch(e.target.value)} className="form-input" style={{ paddingLeft: '14px', borderRadius: '4px' }} />
         </div>
 
         {/* Category pills */}
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
           {CATEGORIES.map(cat => (
             <button key={cat} onClick={() => setCategory(cat)} style={{
-              padding: '8px 16px', borderRadius: '999px', border: 'none', cursor: 'pointer',
+              padding: '8px 16px', borderRadius: '4px', border: '1px solid var(--border)', cursor: 'pointer',
               fontWeight: 600, fontSize: '13px', textTransform: 'capitalize',
-              background: category === cat ? 'linear-gradient(135deg,#3b82f6,#8b5cf6)' : 'rgba(255,255,255,0.06)',
-              color: category === cat ? 'white' : 'var(--text-muted)',
+              background: category === cat ? 'var(--accent-blue)' : 'var(--bg-surface)',
+              color: category === cat ? 'white' : 'var(--text-primary)',
               transition: 'all 0.2s ease',
             }}>
               {categoryLabels[cat]}
@@ -515,16 +502,21 @@ function ModelsContent() {
         </div>
 
         {/* View toggle */}
-        <div style={{ display: 'flex', border: '1px solid var(--border)', borderRadius: '10px', overflow: 'hidden' }}>
-          {([true, false] as const).map(grid => (
-            <button key={String(grid)} onClick={() => setIsGrid(grid)} style={{
-              padding: '8px 12px', background: isGrid === grid ? 'rgba(59,130,246,0.2)' : 'transparent',
-              border: 'none', cursor: 'pointer', color: isGrid === grid ? 'var(--accent-blue)' : 'var(--text-muted)',
-              transition: 'all 0.2s',
-            }}>
-              {grid ? <LayoutGrid size={18} /> : <LayoutList size={18} />}
-            </button>
-          ))}
+        <div style={{ display: 'flex', border: '1px solid var(--border)', borderRadius: '4px', overflow: 'hidden' }}>
+          <button onClick={() => setIsGrid(true)} style={{
+            padding: '8px 14px', background: isGrid ? 'var(--accent-blue)' : 'var(--bg-surface)',
+            border: 'none', cursor: 'pointer', color: isGrid ? 'white' : 'var(--text-muted)',
+            fontSize: '12px', fontWeight: 600,
+          }}>
+            Grid
+          </button>
+          <button onClick={() => setIsGrid(false)} style={{
+            padding: '8px 14px', background: !isGrid ? 'var(--accent-blue)' : 'var(--bg-surface)',
+            border: 'none', cursor: 'pointer', color: !isGrid ? 'white' : 'var(--text-muted)',
+            fontSize: '12px', fontWeight: 600,
+          }}>
+            List
+          </button>
         </div>
       </div>
 
@@ -535,8 +527,7 @@ function ModelsContent() {
 
       {/* Grid / List */}
       {filtered.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-muted)' }}>
-          <p style={{ fontSize: '40px', marginBottom: '16px' }}>🔍</p>
+        <div style={{ textAlign: 'center', padding: '60px 0', color: 'var(--text-muted)' }}>
           <p>No models found. Try a different search or category.</p>
         </div>
       ) : (
@@ -560,14 +551,14 @@ function ModelsContent() {
       {/* VARIANT SELECTION POPUP */}
       {variantSelectionCar && (
         <div className="modal-overlay" onClick={() => setVariantSelectionCar(null)}>
-          <div className="modal-panel" onClick={e => e.stopPropagation()} style={{ maxWidth: '440px', borderRadius: '20px' }}>
+          <div className="modal-panel" onClick={e => e.stopPropagation()} style={{ maxWidth: '440px', borderRadius: '4px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
               <h3 style={{ fontSize: '18px', fontWeight: 800, margin: 0, color: 'var(--text-primary)' }}>Select CAD Model</h3>
               <button
                 onClick={() => setVariantSelectionCar(null)}
-                style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }}
+                style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '13px', fontWeight: 600 }}
               >
-                <X size={18} />
+                Close
               </button>
             </div>
             <p style={{ color: 'var(--text-muted)', fontSize: '13px', margin: '0 0 20px', lineHeight: '1.5' }}>
@@ -582,25 +573,16 @@ function ModelsContent() {
                   style={{
                     width: '100%',
                     textAlign: 'left',
-                    padding: '14px 18px',
-                    borderRadius: '12px',
+                    padding: '12px 16px',
+                    borderRadius: '4px',
                     fontWeight: 600,
                     fontSize: '14px',
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
                   }}
-                  onMouseEnter={e => {
-                    e.currentTarget.style.borderColor = 'var(--accent-blue)';
-                    e.currentTarget.style.color = 'var(--accent-blue)';
-                  }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.borderColor = 'var(--border)';
-                    e.currentTarget.style.color = 'var(--text-primary)';
-                  }}
                 >
                   {variant}
-                  <ArrowRight size={16} />
                 </button>
               ))}
             </div>

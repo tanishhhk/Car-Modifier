@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { Car, Menu, X, LogOut, LogIn, Sun, Moon } from 'lucide-react';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -26,7 +25,6 @@ export default function Navbar() {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll);
 
-    // Initial theme set
     const saved = localStorage.getItem('theme') || 'light';
     setTheme(saved as 'light' | 'dark');
     if (saved === 'dark') {
@@ -64,27 +62,24 @@ export default function Navbar() {
         left: 0,
         right: 0,
         zIndex: 900,
-        transition: 'all 0.3s ease',
-        background: scrolled
-          ? 'var(--bg-glass)'
-          : 'transparent',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
+        transition: 'all 0.2s ease',
+        background: scrolled ? 'var(--bg-card)' : 'var(--bg-primary)',
+        borderBottom: '1px solid var(--border)',
       }}
     >
       <nav style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '68px' }}>
         {/* Logo */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
           <div style={{
-            width: 36, height: 36, borderRadius: '10px',
-            background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
+            width: 32, height: 32, borderRadius: '4px',
+            background: 'var(--accent-blue)', color: 'white',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontWeight: 800, fontSize: '14px',
           }}>
-            <Car size={20} color="white" />
+            AZ
           </div>
           <span style={{ fontWeight: 800, fontSize: '18px', color: 'var(--text-primary)', letterSpacing: '-0.5px' }}>
-            Car<span style={{ background: 'linear-gradient(135deg,#3b82f6,#8b5cf6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Config</span>
+            GarageAZ
           </span>
         </Link>
 
@@ -101,8 +96,8 @@ export default function Navbar() {
                   fontSize: '14px',
                   fontWeight: active ? 600 : 400,
                   padding: '6px 14px',
-                  borderRadius: '8px',
-                  background: active ? 'var(--glow-blue)' : 'transparent',
+                  borderRadius: '4px',
+                  background: active ? 'var(--bg-surface)' : 'transparent',
                   border: active ? '1px solid var(--border)' : '1px solid transparent',
                   transition: 'all 0.2s ease',
                   display: 'block',
@@ -120,40 +115,39 @@ export default function Navbar() {
             onClick={toggleTheme}
             aria-label="Toggle theme"
             style={{
-              background: 'none',
-              border: 'none',
+              background: 'var(--bg-surface)',
+              border: '1px solid var(--border)',
               color: 'var(--text-primary)',
               cursor: 'pointer',
-              padding: '6px',
-              borderRadius: '8px',
+              padding: '6px 12px',
+              borderRadius: '4px',
+              fontSize: '12px',
+              fontWeight: 600,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              transition: 'background 0.2s',
             }}
-            onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-glass-light)'}
-            onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
           >
-            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+            {theme === 'light' ? 'Dark' : 'Light'}
           </button>
 
           {isLoggedIn ? (
-            <button onClick={handleLogout} className="btn-ghost" style={{ padding: '8px 16px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <LogOut size={15} /> Logout
+            <button onClick={handleLogout} className="btn-ghost" style={{ padding: '8px 16px', fontSize: '14px' }}>
+              Logout
             </button>
           ) : (
-            <Link href="/login" className="btn-primary" style={{ padding: '8px 20px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '6px', textDecoration: 'none', position: 'relative', zIndex: 1 }}>
-              <LogIn size={15} /> Login
+            <Link href="/login" className="btn-primary" style={{ padding: '8px 20px', fontSize: '14px', textDecoration: 'none' }}>
+              Login
             </Link>
           )}
 
           {/* Hamburger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            style={{ background: 'none', border: 'none', color: 'var(--text-primary)', cursor: 'pointer', padding: '4px', display: 'none' }}
+            style={{ background: 'none', border: '1px solid var(--border)', color: 'var(--text-primary)', cursor: 'pointer', padding: '6px 10px', borderRadius: '4px', fontSize: '13px', fontWeight: 600, display: 'none' }}
             className="show-mobile"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? 'Close' : 'Menu'}
           </button>
         </div>
       </nav>

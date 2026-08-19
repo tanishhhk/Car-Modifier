@@ -4,11 +4,11 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: { default: 'CarConfig | 3D Car Customizer & Garages', template: '%s | CarConfig' },
+  title: { default: 'GarageAZ | 3D Car Customizer & Garages', template: '%s | GarageAZ' },
   description: 'Load high fidelity 3D CAD schematics, apply real world upgrades, and schedule garage consultations.',
   keywords: ['car configurator', 'car customization', '3d cad model', 'garage appointment', 'car upgrades', 'alloys', 'paint', 'subwoofer'],
   openGraph: {
-    title: 'CarConfig | 3D Car Customizer & Garages',
+    title: 'GarageAZ | 3D Car Customizer & Garages',
     description: 'Load high fidelity 3D CAD schematics, apply real world upgrades, and schedule garage consultations.',
     type: 'website',
   },

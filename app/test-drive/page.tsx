@@ -2,19 +2,18 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Check, ChevronRight, ChevronLeft, User, Mail, Phone, Car, Calendar, Clock, MapPin, Wrench, Shield, Home } from 'lucide-react';
 import { cars } from '@/lib/cars';
 
 const TIME_SLOTS = ['9:00 AM','10:00 AM','11:00 AM','12:00 PM','2:00 PM','3:00 PM','4:00 PM','5:00 PM'];
 const LOCATIONS = ['New Delhi', 'Noida', 'Ghaziabad', 'Gurugram', 'Mumbai', 'Bengaluru', 'Chennai', 'Hyderabad', 'Pune', 'Kolkata'];
-const COUNTRY_CODES = ['+91 🇮🇳 India','+1 🇺🇸 USA','+44 🇬🇧 UK','+61 🇦🇺 Australia','+81 🇯🇵 Japan','+49 🇩🇪 Germany'];
+const COUNTRY_CODES = ['+91 India','+1 USA','+44 UK','+61 Australia','+81 Japan','+49 Germany'];
 
 const GARAGES = [
-  { name: 'Apex Auto Customizers', rating: '4.9 ★', specialties: 'Alloys, Paint & Suspension' },
-  { name: 'Precision Tuning & Audio', rating: '4.8 ★', specialties: 'Subwoofers & System Tuning' },
-  { name: 'GlowDrive Body & Paint Shop', rating: '4.7 ★', specialties: 'Metallic & Matte Wraps' },
-  { name: 'HyperAudio Woofers', rating: '4.9 ★', specialties: 'Soundproofing & Trunk Audio' },
-  { name: 'Elite Leather Interiors', rating: '4.8 ★', specialties: 'Alcantara, Leather & Console Trim' }
+  { name: 'Apex Auto Customizers', rating: '4.9', specialties: 'Alloys, Paint & Suspension' },
+  { name: 'Precision Tuning & Audio', rating: '4.8', specialties: 'Subwoofers & System Tuning' },
+  { name: 'GlowDrive Body & Paint Shop', rating: '4.7', specialties: 'Metallic & Matte Wraps' },
+  { name: 'HyperAudio Woofers', rating: '4.9', specialties: 'Soundproofing & Trunk Audio' },
+  { name: 'Elite Leather Interiors', rating: '4.8', specialties: 'Alcantara, Leather & Console Trim' }
 ];
 
 interface FormData {
@@ -38,7 +37,7 @@ function GarageAppointmentContent() {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Partial<FormData>>({});
   const [form, setForm] = useState<FormData>({
-    name: '', email: '', countryCode: '+91 🇮🇳 India', phone: '',
+    name: '', email: '', countryCode: '+91 India', phone: '',
     model: carObj ? `${carObj.brand} ${carObj.name}` : '',
     variant: variantParam, date: '', time: '', location: '',
     visitType: 'garage', garageName: '', address: ''
@@ -92,32 +91,29 @@ function GarageAppointmentContent() {
   if (submitted) return (
     <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px 24px' }}>
       <div style={{ textAlign: 'center', maxWidth: '540px' }}>
-        <div style={{ width: 80, height: 80, borderRadius: '50%', background: 'rgba(34,197,94,0.15)', border: '2px solid #22c55e', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
-          <Check size={36} style={{ color: '#22c55e' }} />
-        </div>
-        <h2 style={{ fontWeight: 900, fontSize: '32px', marginBottom: '12px', color: 'var(--text-primary)' }}>Appointment Scheduled! 🎉</h2>
+        <h2 style={{ fontWeight: 800, fontSize: '32px', marginBottom: '12px', color: 'var(--text-primary)' }}>Appointment Scheduled</h2>
         <p style={{ color: 'var(--text-muted)', fontSize: '16px', lineHeight: '1.75', marginBottom: '16px' }}>
           Your appointment is confirmed for <strong style={{ color: 'var(--text-primary)' }}>{form.date}</strong> at <strong style={{ color: 'var(--text-primary)' }}>{form.time}</strong> with <strong style={{ color: 'var(--text-primary)' }}>{form.garageName}</strong>.
         </p>
         
         {form.visitType === 'home' ? (
-          <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '14px', padding: '16px', marginBottom: '24px', textAlign: 'left' }}>
-            <p style={{ margin: 0, fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Home size={16} style={{ color: 'var(--accent-blue)' }} /> Home Visit Address
+          <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '4px', padding: '16px', marginBottom: '24px', textAlign: 'left' }}>
+            <p style={{ margin: 0, fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)' }}>
+              Home Visit Address
             </p>
             <p style={{ margin: '6px 0 0', color: 'var(--text-muted)', fontSize: '13px' }}>{form.address}</p>
           </div>
         ) : (
-          <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '14px', padding: '16px', marginBottom: '24px', textAlign: 'left' }}>
-            <p style={{ margin: 0, fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <MapPin size={16} style={{ color: 'var(--accent-blue)' }} /> Garage Shop Location
+          <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '4px', padding: '16px', marginBottom: '24px', textAlign: 'left' }}>
+            <p style={{ margin: 0, fontWeight: 700, fontSize: '14px', color: 'var(--text-primary)' }}>
+              Garage Shop Location
             </p>
             <p style={{ margin: '6px 0 0', color: 'var(--text-muted)', fontSize: '13px' }}>Partner shop located in {form.location}. Please bring your configuration details.</p>
           </div>
         )}
 
         <p style={{ color: 'var(--text-muted)', fontSize: '14px', marginBottom: '32px' }}>A confirmation detail block was sent to {form.email}. Our technician will call you shortly.</p>
-        <button onClick={() => { setSubmitted(false); setStep(1); setForm({ name:'',email:'',countryCode:'+91 🇮🇳 India',phone:'',model:'',variant:'',date:'',time:'',location:'',visitType:'garage',garageName:'',address:'' }); }} className="btn-primary" style={{ marginRight: '12px' }}>
+        <button onClick={() => { setSubmitted(false); setStep(1); setForm({ name:'',email:'',countryCode:'+91 India',phone:'',model:'',variant:'',date:'',time:'',location:'',visitType:'garage',garageName:'',address:'' }); }} className="btn-primary" style={{ borderRadius: '4px' }}>
           Schedule Another
         </button>
       </div>
@@ -127,14 +123,14 @@ function GarageAppointmentContent() {
   return (
     <div style={{ padding: '60px 24px 100px', maxWidth: '1000px', margin: '0 auto' }}>
       {/* Header */}
-      <div style={{ textAlign: 'center', marginBottom: '52px' }}>
-        <span className="badge badge-blue" style={{ marginBottom: '16px', display: 'inline-block' }}>GARAGE COLLABORATION</span>
+      <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+        <span className="badge" style={{ marginBottom: '16px', display: 'inline-block' }}>GARAGE COLLABORATION</span>
         <h1 className="section-title">Schedule Garage Appointment</h1>
         <p className="section-subtitle">Meet our customization experts, discuss details, and build your custom car</p>
       </div>
 
       {/* Step indicator */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '52px', gap: '0' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '48px', gap: '0' }}>
         {['Personal Info', 'Garage & Slot', 'Review & Confirm'].map((label, i) => {
           const n = i + 1;
           const state = step > n ? 'done' : step === n ? 'active' : 'pending';
@@ -142,7 +138,7 @@ function GarageAppointmentContent() {
             <div key={label} style={{ display: 'flex', alignItems: 'center' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
                 <div className={`step-dot ${state}`}>
-                  {state === 'done' ? <Check size={14} /> : n}
+                  {n}
                 </div>
                 <span style={{ fontSize: '11px', color: state === 'active' ? 'var(--accent-blue)' : 'var(--text-muted)', fontWeight: state === 'active' ? 700 : 400, whiteSpace: 'nowrap' }}>{label}</span>
               </div>
@@ -154,30 +150,30 @@ function GarageAppointmentContent() {
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 360px', gap: '28px', alignItems: 'start' }}>
         {/* Form panel */}
-        <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '20px', padding: '36px' }}>
+        <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '4px', padding: '36px' }}>
           {step === 1 && (
             <div>
-              <h2 style={{ fontWeight: 700, fontSize: '20px', marginBottom: '28px', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <User size={20} style={{ color: 'var(--accent-blue)' }} /> Contact Details
+              <h2 style={{ fontWeight: 700, fontSize: '18px', marginBottom: '24px', color: 'var(--text-primary)' }}>
+                Contact Details
               </h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 <div>
                   <label className="form-label">Full Name</label>
-                  <input className="form-input" placeholder="John Doe" value={form.name} onChange={e => set('name', e.target.value)} />
+                  <input className="form-input" placeholder="John Doe" value={form.name} onChange={e => set('name', e.target.value)} style={{ borderRadius: '4px' }} />
                   {errors.name && <p style={{ color: '#f43f5e', fontSize: '12px', marginTop: '4px' }}>{errors.name}</p>}
                 </div>
                 <div>
                   <label className="form-label">Email Address</label>
-                  <input className="form-input" type="email" placeholder="john@example.com" value={form.email} onChange={e => set('email', e.target.value)} />
+                  <input className="form-input" type="email" placeholder="john@example.com" value={form.email} onChange={e => set('email', e.target.value)} style={{ borderRadius: '4px' }} />
                   {errors.email && <p style={{ color: '#f43f5e', fontSize: '12px', marginTop: '4px' }}>{errors.email}</p>}
                 </div>
                 <div>
                   <label className="form-label">Phone Number</label>
                   <div style={{ display: 'flex', gap: '10px' }}>
-                    <select className="form-input" style={{ width: '160px', flexShrink: 0 }} value={form.countryCode} onChange={e => set('countryCode', e.target.value)}>
+                    <select className="form-input" style={{ width: '150px', flexShrink: 0, borderRadius: '4px' }} value={form.countryCode} onChange={e => set('countryCode', e.target.value)}>
                       {COUNTRY_CODES.map(c => <option key={c} value={c}>{c}</option>)}
                     </select>
-                    <input className="form-input" type="tel" placeholder="9876543210" value={form.phone} onChange={e => set('phone', e.target.value.replace(/\D/g,''))} />
+                    <input className="form-input" type="tel" placeholder="9876543210" value={form.phone} onChange={e => set('phone', e.target.value.replace(/\D/g,''))} style={{ borderRadius: '4px' }} />
                   </div>
                   {errors.phone && <p style={{ color: '#f43f5e', fontSize: '12px', marginTop: '4px' }}>{errors.phone}</p>}
                 </div>
@@ -187,8 +183,8 @@ function GarageAppointmentContent() {
 
           {step === 2 && (
             <div>
-              <h2 style={{ fontWeight: 700, fontSize: '20px', marginBottom: '28px', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <Wrench size={20} style={{ color: 'var(--accent-blue)' }} /> Garage & Time Slot
+              <h2 style={{ fontWeight: 700, fontSize: '18px', marginBottom: '24px', color: 'var(--text-primary)' }}>
+                Garage & Time Slot
               </h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 {/* Visit Type */}
@@ -199,29 +195,29 @@ function GarageAppointmentContent() {
                       type="button"
                       onClick={() => set('visitType', 'garage')}
                       style={{
-                        padding: '12px', borderRadius: '10px', cursor: 'pointer',
-                        fontSize: '13px', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
-                        background: form.visitType === 'garage' ? 'rgba(59,130,246,0.15)' : 'rgba(255,255,255,0.05)',
-                        color: form.visitType === 'garage' ? 'var(--accent-blue)' : 'var(--text-muted)',
-                        border: form.visitType === 'garage' ? '1px solid rgba(59,130,246,0.4)' : '1px solid var(--border)',
+                        padding: '12px', borderRadius: '4px', cursor: 'pointer',
+                        fontSize: '13px', fontWeight: 600,
+                        background: form.visitType === 'garage' ? 'var(--accent-blue)' : 'var(--bg-surface)',
+                        color: form.visitType === 'garage' ? 'white' : 'var(--text-primary)',
+                        border: '1px solid var(--border)',
                         transition: 'all 0.2s',
                       }}
                     >
-                      <Wrench size={16} /> I will visit shop
+                      I will visit shop
                     </button>
                     <button
                       type="button"
                       onClick={() => set('visitType', 'home')}
                       style={{
-                        padding: '12px', borderRadius: '10px', cursor: 'pointer',
-                        fontSize: '13px', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
-                        background: form.visitType === 'home' ? 'rgba(59,130,246,0.15)' : 'rgba(255,255,255,0.05)',
-                        color: form.visitType === 'home' ? 'var(--accent-blue)' : 'var(--text-muted)',
-                        border: form.visitType === 'home' ? '1px solid rgba(59,130,246,0.4)' : '1px solid var(--border)',
+                        padding: '12px', borderRadius: '4px', cursor: 'pointer',
+                        fontSize: '13px', fontWeight: 600,
+                        background: form.visitType === 'home' ? 'var(--accent-blue)' : 'var(--bg-surface)',
+                        color: form.visitType === 'home' ? 'white' : 'var(--text-primary)',
+                        border: '1px solid var(--border)',
                         transition: 'all 0.2s',
                       }}
                     >
-                      <Home size={16} /> Visit my location
+                      Visit my location
                     </button>
                   </div>
                 </div>
@@ -236,7 +232,7 @@ function GarageAppointmentContent() {
                       placeholder="Enter your complete home or office address..."
                       value={form.address}
                       onChange={e => set('address', e.target.value)}
-                      style={{ fontFamily: 'inherit', resize: 'vertical' }}
+                      style={{ fontFamily: 'inherit', resize: 'vertical', borderRadius: '4px' }}
                     />
                     {errors.address && <p style={{ color: '#f43f5e', fontSize: '12px', marginTop: '4px' }}>{errors.address}</p>}
                   </div>
@@ -245,7 +241,7 @@ function GarageAppointmentContent() {
                 {/* Car model selection */}
                 <div>
                   <label className="form-label">Car Model</label>
-                  <select className="form-input" value={form.model} onChange={e => set('model', e.target.value)}>
+                  <select className="form-input" value={form.model} onChange={e => set('model', e.target.value)} style={{ borderRadius: '4px' }}>
                     <option value="">Select a car...</option>
                     {cars.map(c => <option key={c.id} value={`${c.brand} ${c.name}`}>{c.brand} {c.name}</option>)}
                   </select>
@@ -255,7 +251,7 @@ function GarageAppointmentContent() {
                 {/* Customizer Garage */}
                 <div>
                   <label className="form-label">Choose Specialized Garage</label>
-                  <select className="form-input" value={form.garageName} onChange={e => set('garageName', e.target.value)}>
+                  <select className="form-input" value={form.garageName} onChange={e => set('garageName', e.target.value)} style={{ borderRadius: '4px' }}>
                     <option value="">Select garage partner...</option>
                     {GARAGES.map(g => <option key={g.name} value={g.name}>{g.name} ({g.specialties})</option>)}
                   </select>
@@ -265,7 +261,7 @@ function GarageAppointmentContent() {
                 {/* Preferred City */}
                 <div>
                   <label className="form-label">Your City</label>
-                  <select className="form-input" value={form.location} onChange={e => set('location', e.target.value)}>
+                  <select className="form-input" value={form.location} onChange={e => set('location', e.target.value)} style={{ borderRadius: '4px' }}>
                     <option value="">Select city...</option>
                     {LOCATIONS.map(l => <option key={l} value={l}>{l}</option>)}
                   </select>
@@ -275,7 +271,7 @@ function GarageAppointmentContent() {
                 {/* Date */}
                 <div>
                   <label className="form-label">Preferred Date</label>
-                  <input className="form-input" type="date" min={today} value={form.date} onChange={e => set('date', e.target.value)} />
+                  <input className="form-input" type="date" min={today} value={form.date} onChange={e => set('date', e.target.value)} style={{ borderRadius: '4px' }} />
                   {errors.date && <p style={{ color: '#f43f5e', fontSize: '12px', marginTop: '4px' }}>{errors.date}</p>}
                 </div>
 
@@ -285,11 +281,11 @@ function GarageAppointmentContent() {
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(100px,1fr))', gap: '8px' }}>
                     {TIME_SLOTS.map(t => (
                       <button key={t} type="button" onClick={() => set('time', t)} style={{
-                        padding: '10px 8px', borderRadius: '10px', cursor: 'pointer',
+                        padding: '10px 8px', borderRadius: '4px', cursor: 'pointer',
                         fontSize: '13px', fontWeight: 600,
-                        background: form.time === t ? 'rgba(59,130,246,0.15)' : 'rgba(255,255,255,0.05)',
-                        color: form.time === t ? 'var(--accent-blue)' : 'var(--text-muted)',
-                        border: form.time === t ? '1px solid rgba(59,130,246,0.4)' : '1px solid var(--border)',
+                        background: form.time === t ? 'var(--accent-blue)' : 'var(--bg-surface)',
+                        color: form.time === t ? 'white' : 'var(--text-primary)',
+                        border: '1px solid var(--border)',
                         transition: 'all 0.2s',
                       }}>{t}</button>
                     ))}
@@ -302,24 +298,23 @@ function GarageAppointmentContent() {
 
           {step === 3 && (
             <div>
-              <h2 style={{ fontWeight: 700, fontSize: '20px', marginBottom: '28px', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <Check size={20} style={{ color: '#22c55e' }} /> Review & Confirm
+              <h2 style={{ fontWeight: 700, fontSize: '18px', marginBottom: '24px', color: 'var(--text-primary)' }}>
+                Review & Confirm
               </h2>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 {[
-                  { icon: User, label: 'Name', value: form.name },
-                  { icon: Mail, label: 'Email', value: form.email },
-                  { icon: Phone, label: 'Phone', value: `${form.countryCode} ${form.phone}` },
-                  { icon: Car, label: 'Car & Variant', value: `${form.model} ${form.variant ? `(${form.variant})` : ''}` },
-                  { icon: Wrench, label: 'Garage', value: form.garageName },
-                  { icon: Home, label: 'Visit Type', value: form.visitType === 'home' ? 'Home Visit (We visit you)' : 'Garage Visit (You visit shop)' },
-                  { icon: Calendar, label: 'Date', value: form.date },
-                  { icon: Clock, label: 'Time', value: form.time },
-                  { icon: MapPin, label: 'City', value: form.location },
-                ].map(({ icon: Icon, label, value }) => (
-                  <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '14px', background: 'var(--bg-glass-light)', borderRadius: '10px', padding: '14px 16px', border: '1px solid var(--border)' }}>
-                    <Icon size={16} style={{ color: 'var(--accent-blue)', flexShrink: 0 }} />
-                    <span style={{ color: 'var(--text-muted)', fontSize: '13px', minWidth: '85px' }}>{label}</span>
+                  { label: 'Name', value: form.name },
+                  { label: 'Email', value: form.email },
+                  { label: 'Phone', value: `${form.countryCode} ${form.phone}` },
+                  { label: 'Car & Variant', value: `${form.model} ${form.variant ? `(${form.variant})` : ''}` },
+                  { label: 'Garage', value: form.garageName },
+                  { label: 'Visit Type', value: form.visitType === 'home' ? 'Home Visit (We visit you)' : 'Garage Visit (You visit shop)' },
+                  { label: 'Date', value: form.date },
+                  { label: 'Time', value: form.time },
+                  { label: 'City', value: form.location },
+                ].map(({ label, value }) => (
+                  <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '14px', background: 'var(--bg-surface)', borderRadius: '4px', padding: '12px 16px', border: '1px solid var(--border)' }}>
+                    <span style={{ color: 'var(--text-muted)', fontSize: '13px', minWidth: '110px' }}>{label}</span>
                     <span style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '14px' }}>{value || '-'}</span>
                   </div>
                 ))}
@@ -329,11 +324,11 @@ function GarageAppointmentContent() {
 
           {/* Nav buttons */}
           <div style={{ display: 'flex', gap: '12px', marginTop: '32px' }}>
-            {step > 1 && <button onClick={back} className="btn-ghost" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><ChevronLeft size={16} /> Back</button>}
+            {step > 1 && <button onClick={back} className="btn-ghost" style={{ borderRadius: '4px' }}>Back</button>}
             <div style={{ flex: 1 }} />
             {step < 3
-              ? <button onClick={next} className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '6px', position: 'relative', zIndex: 1 }}>Next <ChevronRight size={16} /></button>
-              : <button onClick={submit} className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '6px', position: 'relative', zIndex: 1 }}><Check size={16} /> Confirm Appointment</button>
+              ? <button onClick={next} className="btn-primary" style={{ borderRadius: '4px' }}>Next</button>
+              : <button onClick={submit} className="btn-primary" style={{ borderRadius: '4px' }}>Confirm Appointment</button>
             }
           </div>
         </div>
@@ -343,9 +338,9 @@ function GarageAppointmentContent() {
           
           {/* 3D Customization summary card (if prefilled) */}
           {carObj && (
-            <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '16px', padding: '24px' }}>
-              <h3 style={{ color: 'var(--text-primary)', fontWeight: 800, margin: '0 0 16px', fontSize: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Car size={18} style={{ color: 'var(--accent-blue)' }} /> Configuration Specs
+            <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '4px', padding: '24px' }}>
+              <h3 style={{ color: 'var(--text-primary)', fontWeight: 700, margin: '0 0 16px', fontSize: '15px' }}>
+                Configuration Specs
               </h3>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -363,7 +358,7 @@ function GarageAppointmentContent() {
                   <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border)', paddingBottom: '8px' }}>
                     <span style={{ color: 'var(--text-muted)', fontSize: '13px' }}>Paint Finish</span>
                     <span style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-primary)', fontWeight: 600, fontSize: '13px' }}>
-                      <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: paintParam, border: '1px solid rgba(255,255,255,0.2)' }} />
+                      <span style={{ width: '10px', height: '10px', borderRadius: '2px', background: paintParam, border: '1px solid var(--border)' }} />
                       {paintParam}
                     </span>
                   </div>
@@ -391,19 +386,19 @@ function GarageAppointmentContent() {
           )}
 
           {/* Garage specialties */}
-          <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '16px', padding: '24px' }}>
-            <h3 style={{ color: 'var(--text-primary)', fontWeight: 700, marginBottom: '16px', fontSize: '16px' }}>Garage Options</h3>
+          <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '4px', padding: '24px' }}>
+            <h3 style={{ color: 'var(--text-primary)', fontWeight: 700, marginBottom: '16px', fontSize: '15px' }}>Garage Options</h3>
             {['Garage team will visit you or you can visit them','Discuss alloy rims, wraps, and subwoofer acoustics','Get custom quotes based on your Three.js CAD specs','Expert installation with full replacement warranties'].map(point => (
-              <div key={point} style={{ display: 'flex', gap: '10px', marginBottom: '12px' }}>
-                <Check size={16} style={{ color: '#22c55e', flexShrink: 0, marginTop: '2px' }} />
+              <div key={point} style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
+                <div style={{ width: 6, height: 6, borderRadius: '1px', background: 'var(--accent-blue)', flexShrink: 0, marginTop: '6px' }} />
                 <p style={{ color: 'var(--text-muted)', fontSize: '14px', margin: 0, lineHeight: '1.5' }}>{point}</p>
               </div>
             ))}
           </div>
           
-          <div style={{ background: 'linear-gradient(135deg,var(--glow-blue),var(--glow-violet))', border: '1px solid var(--border)', borderRadius: '16px', padding: '20px' }}>
-            <p style={{ color: 'var(--accent-blue)', fontWeight: 700, fontSize: '14px', marginBottom: '6px' }}>📞 Questions about build?</p>
-            <p style={{ color: 'var(--text-muted)', fontSize: '13px', margin: 0 }}>Call us at +91 98765 43210 or email experts@carconfig.in</p>
+          <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: '4px', padding: '20px' }}>
+            <p style={{ color: 'var(--accent-blue)', fontWeight: 700, fontSize: '14px', marginBottom: '6px' }}>Questions about build?</p>
+            <p style={{ color: 'var(--text-muted)', fontSize: '13px', margin: 0 }}>Call us at +91 98765 43210 or email experts@garageaz.in</p>
           </div>
         </div>
       </div>

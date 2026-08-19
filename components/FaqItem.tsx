@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
 
 interface FaqItemProps {
   question: string;
@@ -16,10 +15,10 @@ export default function FaqItem({ question, answer, defaultOpen = false }: FaqIt
     <div
       style={{
         background: 'var(--bg-card)',
-        border: `1px solid ${isOpen ? 'rgba(59,130,246,0.3)' : 'var(--border)'}`,
-        borderRadius: '14px',
+        border: `1px solid ${isOpen ? 'var(--accent-blue)' : 'var(--border)'}`,
+        borderRadius: '4px',
         overflow: 'hidden',
-        transition: 'border-color 0.3s ease',
+        transition: 'border-color 0.2s ease',
       }}
     >
       <button
@@ -28,7 +27,7 @@ export default function FaqItem({ question, answer, defaultOpen = false }: FaqIt
           width: '100%',
           background: 'none',
           border: 'none',
-          padding: '20px 24px',
+          padding: '16px 20px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -37,27 +36,21 @@ export default function FaqItem({ question, answer, defaultOpen = false }: FaqIt
           textAlign: 'left',
         }}
       >
-        <span style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '16px', lineHeight: '1.4' }}>{question}</span>
-        <div style={{
-          width: 30, height: 30, flexShrink: 0, borderRadius: '8px',
-          background: isOpen ? 'rgba(59,130,246,0.2)' : 'rgba(255,255,255,0.06)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          transition: 'all 0.3s ease',
+        <span style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '15px', lineHeight: '1.4' }}>{question}</span>
+        <span style={{
+          fontSize: '16px',
+          fontWeight: 700,
           color: isOpen ? 'var(--accent-blue)' : 'var(--text-muted)',
         }}>
-          <ChevronDown size={16} style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s ease' }} />
-        </div>
+          {isOpen ? '−' : '+'}
+        </span>
       </button>
 
-      <div style={{
-        maxHeight: isOpen ? '300px' : '0px',
-        overflow: 'hidden',
-        transition: 'max-height 0.4s cubic-bezier(0.4,0,0.2,1)',
-      }}>
-        <div style={{ padding: '0 24px 20px', borderTop: '1px solid var(--border)' }}>
-          <p style={{ color: 'var(--text-muted)', fontSize: '15px', lineHeight: '1.7', margin: '16px 0 0' }}>{answer}</p>
+      {isOpen && (
+        <div style={{ padding: '0 20px 16px', borderTop: '1px solid var(--border)' }}>
+          <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: '1.6', margin: '12px 0 0' }}>{answer}</p>
         </div>
-      </div>
+      )}
     </div>
   );
 }

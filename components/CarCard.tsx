@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Heart, Box } from 'lucide-react';
 import type { CarModel } from '@/lib/cars';
 
 interface CarCardProps {
@@ -11,13 +10,6 @@ interface CarCardProps {
   onToggleFavorite: (id: string) => void;
   onConfigure3D: (car: CarModel) => void;
 }
-
-const categoryColors: Record<string, string> = {
-  sedan:  'badge-blue',
-  suv:    'badge-green',
-  luxury: 'badge-violet',
-  sports: 'badge-rose',
-};
 
 export default function CarCard({ car, isFavorite, onToggleFavorite, onConfigure3D }: CarCardProps) {
   const [imgError, setImgError] = useState(false);
@@ -28,7 +20,7 @@ export default function CarCard({ car, isFavorite, onToggleFavorite, onConfigure
       style={{
         background: 'var(--bg-card)',
         border: '1px solid var(--border)',
-        borderRadius: '16px',
+        borderRadius: '4px',
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
@@ -41,40 +33,39 @@ export default function CarCard({ car, isFavorite, onToggleFavorite, onConfigure
             src={car.img}
             alt={car.name}
             fill
-            style={{ objectFit: 'cover', transition: 'transform 0.4s ease' }}
+            style={{ objectFit: 'cover' }}
             onError={() => setImgError(true)}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         ) : (
-          <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-surface)', color: 'var(--text-muted)', fontSize: '40px' }}>🚗</div>
+          <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-surface)', color: 'var(--text-muted)', fontSize: '14px', fontWeight: 600 }}>CAR MODEL</div>
         )}
 
         {/* Favorite overlay button */}
         <div style={{ position: 'absolute', top: '10px', right: '10px' }}>
           <button
             onClick={() => onToggleFavorite(car.id)}
-            title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+            title={isFavorite ? 'Remove from saved' : 'Save model'}
             style={{
-              width: 36, height: 36, borderRadius: '50%',
-              background: isFavorite ? 'rgba(244,63,94,0.9)' : 'rgba(0,0,0,0.6)',
-              border: '1px solid rgba(255,255,255,0.15)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              cursor: 'pointer', transition: 'all 0.2s', backdropFilter: 'blur(8px)',
-              color: isFavorite ? 'white' : 'rgba(255,255,255,0.7)',
+              padding: '4px 8px', borderRadius: '4px',
+              background: isFavorite ? 'var(--accent-blue)' : 'rgba(0,0,0,0.6)',
+              border: '1px solid rgba(255,255,255,0.2)',
+              fontSize: '11px', fontWeight: 600,
+              cursor: 'pointer', color: 'white',
             }}
           >
-            <Heart size={16} fill={isFavorite ? 'white' : 'none'} />
+            {isFavorite ? 'Saved' : 'Save'}
           </button>
         </div>
 
         {/* Category badge */}
         <div style={{ position: 'absolute', bottom: '10px', left: '10px' }}>
-          <span className={`badge ${categoryColors[car.category]}`}>{car.category}</span>
+          <span className="badge">{car.category}</span>
         </div>
       </div>
 
       {/* Content */}
-      <div style={{ padding: '18px', flex: 1, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+      <div style={{ padding: '16px', flex: 1, display: 'flex', flexDirection: 'column', gap: '10px' }}>
         <div>
           <p style={{ color: 'var(--text-muted)', fontSize: '12px', fontWeight: 600, margin: '0 0 4px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{car.brand}</p>
           <h3 style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '18px', margin: 0 }}>{car.name}</h3>
@@ -82,11 +73,11 @@ export default function CarCard({ car, isFavorite, onToggleFavorite, onConfigure
 
         {/* Quick specs */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
-          <div style={{ background: 'var(--bg-glass-light)', borderRadius: '8px', padding: '8px 10px', border: '1px solid var(--border)' }}>
+          <div style={{ background: 'var(--bg-surface)', borderRadius: '4px', padding: '8px 10px', border: '1px solid var(--border)' }}>
             <p style={{ color: 'var(--text-muted)', fontSize: '10px', fontWeight: 600, margin: '0 0 2px', textTransform: 'uppercase' }}>Mileage</p>
             <p style={{ color: 'var(--text-primary)', fontSize: '13px', fontWeight: 600, margin: 0 }}>{car.mileage}</p>
           </div>
-          <div style={{ background: 'var(--bg-glass-light)', borderRadius: '8px', padding: '8px 10px', border: '1px solid var(--border)' }}>
+          <div style={{ background: 'var(--bg-surface)', borderRadius: '4px', padding: '8px 10px', border: '1px solid var(--border)' }}>
             <p style={{ color: 'var(--text-muted)', fontSize: '10px', fontWeight: 600, margin: '0 0 2px', textTransform: 'uppercase' }}>Seats</p>
             <p style={{ color: 'var(--text-primary)', fontSize: '13px', fontWeight: 600, margin: 0 }}>{car.seats} Seats</p>
           </div>
@@ -97,9 +88,8 @@ export default function CarCard({ car, isFavorite, onToggleFavorite, onConfigure
         <button
           onClick={() => onConfigure3D(car)}
           className="btn-primary"
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginTop: 'auto', width: '100%', position: 'relative', zIndex: 1 }}
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 'auto', width: '100%', borderRadius: '4px' }}
         >
-          <Box size={15} />
           Open 3D CAD
         </button>
       </div>
